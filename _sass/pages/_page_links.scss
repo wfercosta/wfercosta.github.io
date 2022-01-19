@@ -1,0 +1,11 @@
+div .page-links.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div .page-links.links-wrapper {
+  margin-top: 15px;
+  background-color: $color-dark;
+  height: 100%;
+}

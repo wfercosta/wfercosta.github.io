@@ -1,0 +1,27 @@
+---
+layout: default
+permalink: /links
+---
+
+<div class="page-links profile-header">
+    <div class="profile-picture">
+        <img src="/assets/images/profile_pic.jpg" alt="profile picture">
+    </div>
+
+    <div class="socials">
+        <ul>
+            {% for social in site.data.socials %}
+            <li>
+                <a href="{{social.url}}">
+                    <i class="{{social.icon}}"></i>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<div class="page-links links-wrapper">
+
+</div>
+
+
