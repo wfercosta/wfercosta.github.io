@@ -19,10 +19,10 @@ socials:
   url: https://linkedin.com/in/wfercosta
   icon: fab fa-linkedin
 
-- name: twitter
-  username: wfercosta
-  url: https://twitter.com/wfercosta
-  icon: fab fa-twitter
+# - name: twitter
+#   username: wfercosta
+#   url: https://twitter.com/wfercosta
+#   icon: fab fa-twitter
 
 - name: instagram
   username: wfercosta
@@ -34,10 +34,10 @@ socials:
 #   url: https://medium.com/@wfercosta
 #   icon: fab fa-medium
 
-# - name: dev.to
-#   username: wfercosta
-#   url: https://dev.to/wfercosta
-#   icon: fab fa-dev
+- name: dev.to
+  username: wfercosta
+  url: https://dev.to/wfercosta
+  icon: fab fa-dev
 
 - name: strava
   username: wfercosta
