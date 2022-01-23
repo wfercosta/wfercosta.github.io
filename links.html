@@ -3,25 +3,55 @@ layout: default
 permalink: /links
 ---
 
-<div class="page-links profile-header">
-    <div class="profile-picture">
-        <img src="/assets/images/profile_pic.jpg" alt="profile picture">
+<div class="container h-100">
+    <div class="row">
+        <div class="col">
+            <div class="profile info">
+                <div class="picture">
+                    <img src="{{site.data.me.pic-img}}" alt="{{ site.data.me.pic-alt}}" />
+                </div>
+                <div class="id">
+                    <span>{{site.data.me.user-id}}</span>
+                </div>
+                <div class="titles">
+                    <spa>{{site.data.me.titles}}</spa>
+                </div>
+                <div class="socials">
+                    <ul>
+                        {% for social in site.data.me.socials %}
+                        <li>
+                            <a href="{{social.url}}">
+                                <i class="{{social.icon}}"></i>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row h-100">
+        <div class="col">
+            <div class="page links bg-darker">
+                {% for group in site.data.me.links-group %}
+                    <div class="group">
+                        <div class="name">
+                            <span>{{group.name}}</span>
+                        </div>
+                    {% for l in group.links %}
+                    <div class="links">
+                        <a class="button" href="{{ l.url }}">
+                            <div>
+                                <span>{{ l.label }}</span>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
-    <div class="socials">
-        <ul>
-            {% for social in site.data.socials %}
-            <li>
-                <a href="{{social.url}}">
-                    <i class="{{social.icon}}"></i>
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
 </div>
-<div class="page-links links-wrapper">
-
-</div>
-
 

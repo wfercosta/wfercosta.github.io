@@ -4,12 +4,15 @@
 @import 'abstracts/variables';
 @import 'abstracts/functions';
 @import 'abstracts/mixins';
+@import 'abstracts/color_pallete';
 
 @import 'base/reset';
 @import 'base/typography';
 
-@import 'components/profile-picture';
-@import 'components/socials';
+@import 'layout/grid';
+
+@import 'components/profile';
+@import 'components/button';
 
 @import 'pages/page_links';
 

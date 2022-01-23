@@ -4,9 +4,13 @@ body {
 }
 
 body {
-  background-color: $color-light;
+  background-color: $color-backgournd-lighter;
 }
 
-div.container {
-  height: 100%;
+.bg-lighter {
+  background-color: $color-backgournd-lighter;
+}
+
+.bg-darker {
+  background-color: $color-background-darker;
 }
