@@ -29,13 +29,18 @@ socials:
   url: https://instagram.com/wfercosta
   icon: fab fa-instagram
 
-- name: medium
-  username: wfercosta
-  url: https://medium.com/@wfercosta
-  icon: fab fa-medium
+# - name: medium
+#   username: wfercosta
+#   url: https://medium.com/@wfercosta
+#   icon: fab fa-medium
 
-- name: dev.to
+# - name: dev.to
+#   username: wfercosta
+#   url: https://dev.to/wfercosta
+#   icon: fab fa-dev
+
+- name: strava
   username: wfercosta
-  url: https://dev.to/wfercosta
-  icon: fab fa-dev
+  url: https://www.strava.com/athletes/26426928
+  icon: fab fa-strava
 
