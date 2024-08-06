@@ -58,8 +58,35 @@ As the time goes and the client submits its requests, when the limit is exceeded
 
 Another temptation you can give in, could be to perform an in house implementation of rate limiter.
 
-These days, with the advent of cloud providers, most of the computing challenges have already been solved by them and probability you should have in your solution an component as the API Gateway, for example that in general already have support for this kind of configuration.
+These days, with the advent of cloud providers, most of the computing challenges have already been solved by them and probability you should have in your solution an component as the API Gateway, for example, that in general already have support for rate limiting configuration.
 
 From my point of view, it is just viable to perform a custom implementation when the requirements that you have in hand are not supported by a solution out-of-the-box.
 
 # What is the common rate limiters algorithms?
+
+There are several strategies that could be applied when implementing a rate limiter solution and each of them with their pros and cons. In the next sections you find out the most popular ones, with a high level explanation.
+
+## Token bucket
+
+The token bucket algorithm is a very simple algorithm and widely used for rate limiting by internet companies like Amazon and stipe, for instance.
+
+This algorithm has two main elements. The first element is the bucket that acts as a container that delimits the maximum number of tokens that could be consumed by clients in order to allow them to perform a request to a given resource. The tokens consumption should consider a pre-defined scope or criteria that are given to this bucket, like in the previews example that I mention before (e.g. Global Scope, Financial Institute Scope, Internet Protocol and etc.).
+
+The second element is the refiller. This element is responsible for refilling the bucket with new tokens at a given rate. So to a given requirement that we need to allow 50 requests per seconds, the refiller, each second will try to add 50 tokens on the defined bucket and if it exceeds the bucket pre-defined size, it will drop the remaning ones.
+
+Once we have incoming requests, each one that passes through the rate limiter, must acquire a token to be allowed to forwarded to the final resource. If it does not have available tokens in the bucket, the request is dropped and the client receives a response error.
+
+<center>
+<img src="./assets/images/posts/2024/01/01/3.png">
+</center>
+<br>
+
+In general, this algorithm is easy to implement and memory efficient. However, you may have some work to fine tune, once you probability will have multiple buckets with different rules or criterias.
+
+## Leaking bucket
+
+## Fixed window couter
+
+## Sliding window log
+
+## Sliding window couter
