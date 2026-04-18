@@ -1,34 +1,17 @@
-# Site setings
+# Site settings
 name: "wfercosta.com"
-description: "wfercosta.com is a blog about Software Engineering, Software Architecture and Data in general. <br /><br /> As I am passionate about different topics, you can find content that ranges from tools, programming languages, frameworks or methodologies. <br /><br />I hope you enjoy the content and that it is useful to you in your daily life at work or in your studies."
-meta_description: "Blog site, Software Engineering, Solution Architecture, DevOps Engineering, Platform Engineering, Data Architecture, Data Science and Machine Learning, Data Engineering and Full-Stack Development"
-logo: "assets/images/logo.png"
+description: "A blog about Software Engineering, Software Architecture and Data. Content ranges from tools, programming languages, frameworks to methodologies."
 favicon: "assets/images/favicon.ico"
 baseurl: ""
 production_url: https://wfercosta.com/
-#disqus: "justgoodthemes"
-#mailchimp_url: "//justgoodthemes.us3.list-manage.com/subscribe/post?u=78f1bab16028354caeb23aecd&amp;id=4a7330d117"
-cover_image: bg2.jpg
-# Add your GA Tracking Id
-ga_analytics:
 
 # Author
 author:
   name: "Wander Costa"
   image: "authorimage.jpg"
-  greetings: "Hi there!"
-  description: "My name is Wander. I'm a Software Engineer based on Brazil. It's nice to meet you."
-  bio: "Wander is a software engineer, technology enthusiast and non-stop reader whose lifestyle is playing sports and lifelong learning."
-
-# Contact form setings
-#email: wander@wfercosta.com
-#contact_page_description: "Horace theme comes with a contact form built-in. You can use this form with Formspree service and get up to 50 submissions for free. Also, you can easily switch to another service if you want."
-#thankyou_page_description: "Your message has been successfully sent. We will contact you very soon!"
 
 # Social links
-twitter: "wfercosta"
 github: "wfercosta"
-instagram: "wfercosta"
 linkedin: "wfercosta"
 devto: "wfercosta"
 
@@ -39,7 +22,7 @@ navigation:
   - text: About
     url: /about
 
-# Required Plugins
+# Plugins
 plugins_dir:
   - jekyll-paginate
   - jekyll-seo-tag
