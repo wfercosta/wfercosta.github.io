@@ -10,7 +10,6 @@
         {% for item in site.navigation %}
           <a href="{{ site.baseurl }}{{ item.url }}"{% if page.url == item.url %} class="active"{% endif %}>{{ item.text }}</a>
         {% endfor %}
-        <a href="{{ site.baseurl }}/about">About</a>
       </nav>
 
       <div class="nav-actions">
