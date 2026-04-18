@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Engineering Notes — wfercosta.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- EDITMODE defaults -->
+<script>
+const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
+  "theme": "dark"
+}/*EDITMODE-END*/;
+</script>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#home" data-nav>
+      <span class="brand-mark">wf</span>
+      <span class="brand-name">wfercosta<em>/notes</em></span>
+    </a>
+    <div class="nav-links">
+      <a href="#home" data-nav class="active">Articles</a>
+      <a href="#archive" data-nav>Archive</a>
+      <a href="#about" data-nav>About</a>
+      <a href="https://github.com/wfercosta" target="_blank">GitHub <span style="font-variant-emoji:text">↗</span></a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <button class="btn-primary">Subscribe</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HOME ===== -->
+<main id="page-home" class="page">
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-kicker">— Blog Articles —</div>
+      <h1 class="hero-title">Engineering <em>Notes</em></h1>
+      <p class="hero-sub">Writing on software engineering, architecture, data platforms, DevOps and the quiet craft of shipping systems that don't wake you up at 3am.</p>
+    </div>
+
+    <div class="container categories-wrap">
+      <button class="cat-nav prev" id="catPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="categories" id="categories">
+        <a class="cat-card" href="#archive">
+          <div class="cat-icon" style="background:rgba(96,165,250,0.14);color:var(--tag-basics)">◈</div>
+          <div class="cat-meta"><span class="cat-name">Engineering</span><span class="cat-count">24 articles</span></div>
+        </a>
+        <a class="cat-card" href="#archive">
+          <div class="cat-icon" style="background:rgba(248,113,113,0.14);color:var(--tag-health)">▲</div>
+          <div class="cat-meta"><span class="cat-name">Architecture</span><span class="cat-count">18 articles</span></div>
+        </a>
+        <a class="cat-card" href="#archive">
+          <div class="cat-icon" style="background:rgba(192,132,252,0.14);color:var(--tag-remedies)">◉</div>
+          <div class="cat-meta"><span class="cat-name">Data Platform</span><span class="cat-count">12 articles</span></div>
+        </a>
+        <a class="cat-card" href="#archive">
+          <div class="cat-icon" style="background:rgba(251,146,60,0.14);color:var(--tag-resources)">⟳</div>
+          <div class="cat-meta"><span class="cat-name">DevOps</span><span class="cat-count">15 articles</span></div>
+        </a>
+        <a class="cat-card" href="#archive">
+          <div class="cat-icon" style="background:rgba(52,211,153,0.14);color:var(--tag-tech)">✦</div>
+          <div class="cat-meta"><span class="cat-name">AI &amp; ML</span><span class="cat-count">9 articles</span></div>
+        </a>
+        <a class="cat-card" href="#archive">
+          <div class="cat-icon" style="background:rgba(251,191,36,0.14);color:var(--tag-updates)">◐</div>
+          <div class="cat-meta"><span class="cat-name">Updates</span><span class="cat-count">6 articles</span></div>
+        </a>
+        <a class="cat-card" href="#archive">
+          <div class="cat-icon" style="background:rgba(167,139,250,0.14);color:var(--accent)">❖</div>
+          <div class="cat-meta"><span class="cat-name">Process</span><span class="cat-count">8 articles</span></div>
+        </a>
+      </div>
+      <button class="cat-nav next" id="catNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="split-grid">
+      <article class="featured" onclick="goto('#post')">
+        <div class="featured-media">
+          <div class="placeholder p-architecture">ARCHITECTURE · hero image</div>
+          <span class="featured-badge">#42 · Featured</span>
+        </div>
+        <div class="featured-body">
+          <span class="tag architecture">Architecture</span>
+          <h2 class="featured-title">Designing process platforms for long-running business workflows</h2>
+          <p class="featured-excerpt">Notes from a year rebuilding a proposal-to-contract platform: why state machines outlived microservices, how idempotency keys became the real architecture, and the tradeoffs nobody writes about.</p>
+          <div class="featured-meta">April 14, 2026<span class="dot">·</span>18 min read</div>
+        </div>
+      </article>
+      <div class="article-list">
+        <article class="article-row" onclick="goto('#post')">
+          <div class="thumb"><div class="placeholder p-engineering">code</div></div>
+          <div class="body">
+            <span class="tag engineering">Engineering</span>
+            <div class="title">The shape of a good abstraction, and when to break it</div>
+            <div class="meta">Apr 08 · 9 min read</div>
+          </div>
+        </article>
+        <article class="article-row" onclick="goto('#post')">
+          <div class="thumb"><div class="placeholder p-ml">ml</div></div>
+          <div class="body">
+            <span class="tag ml">AI &amp; ML</span>
+            <div class="title">Classifier resolvers: building agents that know when to stop</div>
+            <div class="meta">Mar 28 · 12 min read</div>
+          </div>
+        </article>
+        <article class="article-row" onclick="goto('#post')">
+          <div class="thumb"><div class="placeholder p-devops">k8s</div></div>
+          <div class="body">
+            <span class="tag devops">DevOps</span>
+            <div class="title">Terraform modules that scale without becoming a religion</div>
+            <div class="meta">Mar 15 · 11 min read</div>
+          </div>
+        </article>
+        <article class="article-row" onclick="goto('#post')">
+          <div class="thumb"><div class="placeholder p-data">sql</div></div>
+          <div class="body">
+            <span class="tag data">Data Platform</span>
+            <div class="title">Change data capture, debezium, and the illusion of real-time</div>
+            <div class="meta">Feb 29 · 14 min read</div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Engineering & Architecture -->
+    <div class="sec-head">
+      <h3 class="sec-title"><span class="dot" style="color:var(--tag-basics)"></span>Engineering &amp; Architecture</h3>
+      <a class="sec-read-all" href="#archive">Read all →</a>
+    </div>
+    <div class="card-grid">
+      <article class="card" onclick="goto('#post')">
+        <div class="card-media"><div class="placeholder p-engineering">hexagonal</div></div>
+        <div class="card-body">
+          <span class="tag engineering">Engineering</span>
+          <h4 class="card-title">Ports and adapters: revisiting hexagonal architecture in 2026</h4>
+          <p class="card-excerpt">A decade after Alistair's original paper, the pattern is everywhere and misunderstood everywhere. What still holds up, what doesn't.</p>
+          <div class="card-meta">Apr 02 · 10 min read</div>
+        </div>
+      </article>
+      <article class="card" onclick="goto('#post')">
+        <div class="card-media"><div class="placeholder p-architecture">event</div></div>
+        <div class="card-body">
+          <span class="tag architecture">Architecture</span>
+          <h4 class="card-title">Event-driven, eventually confusing</h4>
+          <p class="card-excerpt">The real cost of choosing events over synchronous calls, and the three patterns that keep the wheels on.</p>
+          <div class="card-meta">Mar 22 · 13 min read</div>
+        </div>
+      </article>
+      <article class="card" onclick="goto('#post')">
+        <div class="card-media"><div class="placeholder p-engineering">tests</div></div>
+        <div class="card-body">
+          <span class="tag engineering">Engineering</span>
+          <h4 class="card-title">Testing the seams, not the code</h4>
+          <p class="card-excerpt">What I learned from deleting 40% of a test suite without losing confidence — and the heuristic I use now.</p>
+          <div class="card-meta">Mar 10 · 7 min read</div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Changelog panel -->
+    <div class="panel">
+      <div class="panel-left">
+        <div class="panel-avatars"><span></span><span></span></div>
+        <h3 class="panel-title">Changelog</h3>
+        <p class="panel-sub">Small updates, new hires on the team, tools I'm trying, and occasionally a rewrite I regret. Dropped roughly every two weeks.</p>
+        <button class="panel-btn">View all</button>
+      </div>
+      <div class="timeline">
+        <div class="timeline-row">
+          <div class="timeline-num">#21</div>
+          <div class="timeline-body">
+            <span class="tag updates">Updates</span>
+            <div class="title">Moved the notes site to a new dark theme</div>
+            <div class="meta">Apr 18, 2026 · 4 min read</div>
+          </div>
+          <div class="timeline-thumb"><div class="placeholder p-updates">v21</div></div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-num">#20</div>
+          <div class="timeline-body">
+            <span class="tag updates">Updates</span>
+            <div class="title">New essay series: building a process platform</div>
+            <div class="meta">Apr 02, 2026 · 3 min read</div>
+          </div>
+          <div class="timeline-thumb"><div class="placeholder p-architecture">v20</div></div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-num">#19</div>
+          <div class="timeline-body">
+            <span class="tag updates">Updates</span>
+            <div class="title">Tooling: Neovim config &amp; agent skills now open</div>
+            <div class="meta">Mar 14, 2026 · 5 min read</div>
+          </div>
+          <div class="timeline-thumb"><div class="placeholder p-devops">v19</div></div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-num">#18</div>
+          <div class="timeline-body">
+            <span class="tag updates">Updates</span>
+            <div class="title">Quarterly reading list: systems &amp; platforms</div>
+            <div class="meta">Feb 28, 2026 · 2 min read</div>
+          </div>
+          <div class="timeline-thumb"><div class="placeholder p-ml">v18</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data & AI -->
+    <div class="sec-head">
+      <h3 class="sec-title"><span class="dot" style="color:var(--tag-remedies)"></span>Data &amp; AI</h3>
+      <a class="sec-read-all" href="#archive">Read all →</a>
+    </div>
+    <div class="card-grid">
+      <article class="card" onclick="goto('#post')">
+        <div class="card-media"><div class="placeholder p-data">dag</div></div>
+        <div class="card-body">
+          <span class="tag data">Data Platform</span>
+          <h4 class="card-title">Your data platform is a graph problem in disguise</h4>
+          <p class="card-excerpt">Lineage, freshness, and recovery all collapse into the same question. Here's how one team modelled it.</p>
+          <div class="card-meta">Apr 05 · 11 min read</div>
+        </div>
+      </article>
+      <article class="card" onclick="goto('#post')">
+        <div class="card-media"><div class="placeholder p-ml">rag</div></div>
+        <div class="card-body">
+          <span class="tag ml">AI &amp; ML</span>
+          <h4 class="card-title">Retrieval is a product decision, not a tech one</h4>
+          <p class="card-excerpt">Why your RAG quality is bottlenecked by chunk boundaries, not model choice, and what to do about it.</p>
+          <div class="card-meta">Mar 29 · 9 min read</div>
+        </div>
+      </article>
+      <article class="card" onclick="goto('#post')">
+        <div class="card-media"><div class="placeholder p-data">cdc</div></div>
+        <div class="card-body">
+          <span class="tag data">Data Platform</span>
+          <h4 class="card-title">When to use CDC, when to just poll</h4>
+          <p class="card-excerpt">A decision tree built from three different migration projects — and the exact throughput at which the tradeoffs flip.</p>
+          <div class="card-meta">Mar 18 · 8 min read</div>
+        </div>
+      </article>
+    </div>
+
+    <!-- All categories -->
+    <div class="sec-head">
+      <h3 class="sec-title" style="color:var(--fg)">All Categories</h3>
+    </div>
+    <div class="catalog-grid">
+      <a class="catalog-item" href="#archive"><span class="tag engineering"></span>Engineering<span class="count">24</span></a>
+      <a class="catalog-item" href="#archive"><span class="tag architecture"></span>Architecture<span class="count">18</span></a>
+      <a class="catalog-item" href="#archive"><span class="tag data"></span>Data Platform<span class="count">12</span></a>
+      <a class="catalog-item" href="#archive"><span class="tag devops"></span>DevOps<span class="count">15</span></a>
+      <a class="catalog-item" href="#archive"><span class="tag ml"></span>AI &amp; ML<span class="count">9</span></a>
+      <a class="catalog-item" href="#archive"><span class="tag updates"></span>Updates<span class="count">6</span></a>
+    </div>
+
+    <!-- Features bar -->
+    <div class="features-bar">
+      <div class="feature">
+        <div class="feature-icon">◇</div>
+        <div><b>RSS feed</b><a href="#">Subscribe via feed.xml</a></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">✉</div>
+        <div><b>No newsletter</b><div class="mono" style="font-size:11px;color:var(--fg-mute);margin-top:2px;letter-spacing:.08em">just notes, in your reader</div></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">✦</div>
+        <div><b>Open source</b><a href="https://github.com/wfercosta/wfercosta.github.io" target="_blank">wfercosta/wfercosta.github.io</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== POST ===== -->
+<main id="page-post" class="page" hidden>
+  <section class="post-hero">
+    <div class="container">
+      <div class="post-meta-top">
+        <span class="tag architecture">Architecture</span>
+        <span>· April 14, 2026 ·</span>
+        <span>18 min read</span>
+      </div>
+      <h1 class="post-title">Designing process platforms for long-running business workflows</h1>
+      <p class="post-lede">Notes from a year rebuilding a proposal-to-contract platform: why state machines outlived microservices, how idempotency keys became the real architecture, and the tradeoffs nobody writes about.</p>
+      <div class="post-author">
+        <div class="avatar"></div>
+        <div>
+          <b>Wander Costa</b><br>
+          <span>Software engineer · Brazil</span>
+        </div>
+      </div>
+      <div class="post-cover"><div class="placeholder p-architecture">cover · process platform diagram</div></div>
+    </div>
+  </section>
+
+  <div class="container-narrow post-body">
+    <p>There is a class of software that looks boring from the outside and is genuinely hard on the inside. Mortgage proposals. Underwriting. Insurance claims. The things that take weeks, involve a dozen human approvals, and have to remember exactly where they were when the power went out.</p>
+    <p>I spent most of last year rebuilding one of these. Here's what held up and what didn't.</p>
+
+    <h2>State machines, not microservices</h2>
+    <p>The first version was a pile of microservices talking to each other via REST and a queue. It worked, in the way that a Rube Goldberg machine works — technically correct, practically unbearable. Every new requirement meant editing four services and praying.</p>
+    <p>The second version started with the state machine. We drew the proposal lifecycle on a whiteboard — <code>draft → submitted → analysed → approved → contracted → active → closed</code> — and made that the primary artifact. Services became workers that picked up transitions; the state itself lived in one place.</p>
+
+    <blockquote>"The architecture isn't the boxes and lines. It's the thing you can point at and say 'this is the source of truth'."</blockquote>
+
+    <h3>Why this matters</h3>
+    <p>Once the state is explicit, everything else becomes easier: reporting, resuming after a crash, explaining the system to new hires, <a href="#">writing contracts with the business side</a>. The moment your business lives in ad-hoc fields scattered across tables, you've lost.</p>
+
+    <h2>Idempotency keys are the real architecture</h2>
+    <p>If I had to pick one thing that saved us more than any pattern or framework, it would be idempotency keys. Every single write — <em>every one</em> — carries a key derived from <code>(actor, intent, target, version)</code>. The platform is allowed to retry anything it wants, and nothing happens twice.</p>
+
+    <pre><code>def submit_proposal(proposal_id, actor):
+    key = idempotency_key("submit", actor, proposal_id, version=1)
+    with store.idempotent(key):
+        proposal = repo.get(proposal_id)
+        proposal.submit(at=now())
+        repo.save(proposal)
+        events.emit(ProposalSubmitted(proposal_id))</code></pre>
+
+    <p>This sounds boring. It is boring. It's also the difference between a platform you can operate and one you can't.</p>
+
+    <h2>The tradeoffs nobody writes about</h2>
+    <ul>
+      <li><b>Debuggability over elegance.</b> We chose verbose, explicit code over clever patterns every time someone would be on-call at 2am reading it.</li>
+      <li><b>Slow by default.</b> Long-running workflows don't need to be fast. They need to be <em>correct</em> and <em>resumable</em>. Optimising for latency before either of those is how you ship bugs.</li>
+      <li><b>Human in the loop.</b> Every workflow assumed a human could intervene. Not as a bolt-on — designed in from the start.</li>
+    </ul>
+
+    <p>If you're building something in this space and want to compare notes, I'm reachable <a href="#about" data-nav>here</a>.</p>
+  </div>
+
+  <div class="container-narrow">
+    <div class="post-footer">
+      <div class="post-tags-row">
+        <span class="tag architecture">Architecture</span>
+        <span class="tag engineering">Engineering</span>
+        <span class="tag updates">Process</span>
+      </div>
+      <div class="post-share">
+        <span>Share</span>
+        <button class="share-btn" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2h3.308l-7.227 8.26L23 22h-6.93l-5.43-7.063L4.324 22H1.016l7.73-8.835L1 2h7.008l4.98 6.567L18.244 2zm-1.17 17.52h1.833L7.01 3.76H5.09l11.984 15.76z"/></svg></button>
+        <button class="share-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM8.27 18.5H5.5v-9h2.77v9zm-1.38-10.2a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2zM18.5 18.5h-2.77v-4.37c0-1.04-.02-2.38-1.45-2.38-1.45 0-1.67 1.13-1.67 2.3v4.45H9.84v-9h2.65v1.23h.04c.37-.7 1.27-1.43 2.62-1.43 2.8 0 3.32 1.84 3.32 4.24v4.96z"/></svg></button>
+        <button class="share-btn" aria-label="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <section class="container" style="margin-top:72px">
+    <div class="sec-head">
+      <h3 class="sec-title"><span class="dot" style="color:var(--accent)"></span>Read next</h3>
+    </div>
+    <div class="card-grid">
+      <article class="card" onclick="goto('#post')">
+        <div class="card-media"><div class="placeholder p-architecture">events</div></div>
+        <div class="card-body">
+          <span class="tag architecture">Architecture</span>
+          <h4 class="card-title">Event-driven, eventually confusing</h4>
+          <div class="card-meta">Mar 22 · 13 min read</div>
+        </div>
+      </article>
+      <article class="card" onclick="goto('#post')">
+        <div class="card-media"><div class="placeholder p-engineering">abstr</div></div>
+        <div class="card-body">
+          <span class="tag engineering">Engineering</span>
+          <h4 class="card-title">The shape of a good abstraction</h4>
+          <div class="card-meta">Apr 08 · 9 min read</div>
+        </div>
+      </article>
+      <article class="card" onclick="goto('#post')">
+        <div class="card-media"><div class="placeholder p-devops">tf</div></div>
+        <div class="card-body">
+          <span class="tag devops">DevOps</span>
+          <h4 class="card-title">Terraform modules that scale</h4>
+          <div class="card-meta">Mar 15 · 11 min read</div>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<!-- ===== ARCHIVE ===== -->
+<main id="page-archive" class="page" hidden>
+  <section class="archive-hero">
+    <div class="container">
+      <div class="hero-kicker">— Archive —</div>
+      <h1 class="hero-title">Everything, <em>sorted</em></h1>
+      <p class="hero-sub">All notes since 2018. Filter by topic, or just scroll.</p>
+      <div class="tag-cloud">
+        <a class="tag-pill active">All <span class="count">92</span></a>
+        <a class="tag-pill">Engineering <span class="count">24</span></a>
+        <a class="tag-pill">Architecture <span class="count">18</span></a>
+        <a class="tag-pill">DevOps <span class="count">15</span></a>
+        <a class="tag-pill">Data Platform <span class="count">12</span></a>
+        <a class="tag-pill">AI &amp; ML <span class="count">9</span></a>
+        <a class="tag-pill">Process <span class="count">8</span></a>
+        <a class="tag-pill">Updates <span class="count">6</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="archive-list">
+      <a class="archive-row" onclick="goto('#post')">
+        <div class="idx">#092</div>
+        <div class="thumb-sm"><div class="placeholder p-architecture">·</div></div>
+        <div class="title">Designing process platforms for long-running business workflows</div>
+        <div><span class="tag architecture">Architecture</span></div>
+        <div class="date">April 14, 2026</div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a class="archive-row" onclick="goto('#post')">
+        <div class="idx">#091</div>
+        <div class="thumb-sm"><div class="placeholder p-engineering">·</div></div>
+        <div class="title">The shape of a good abstraction, and when to break it</div>
+        <div><span class="tag engineering">Engineering</span></div>
+        <div class="date">April 08, 2026</div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a class="archive-row" onclick="goto('#post')">
+        <div class="idx">#090</div>
+        <div class="thumb-sm"><div class="placeholder p-data">·</div></div>
+        <div class="title">Your data platform is a graph problem in disguise</div>
+        <div><span class="tag data">Data Platform</span></div>
+        <div class="date">April 05, 2026</div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a class="archive-row" onclick="goto('#post')">
+        <div class="idx">#089</div>
+        <div class="thumb-sm"><div class="placeholder p-engineering">·</div></div>
+        <div class="title">Ports and adapters: revisiting hexagonal architecture in 2026</div>
+        <div><span class="tag engineering">Engineering</span></div>
+        <div class="date">April 02, 2026</div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a class="archive-row" onclick="goto('#post')">
+        <div class="idx">#088</div>
+        <div class="thumb-sm"><div class="placeholder p-ml">·</div></div>
+        <div class="title">Retrieval is a product decision, not a tech one</div>
+        <div><span class="tag ml">AI &amp; ML</span></div>
+        <div class="date">March 29, 2026</div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a class="archive-row" onclick="goto('#post')">
+        <div class="idx">#087</div>
+        <div class="thumb-sm"><div class="placeholder p-ml">·</div></div>
+        <div class="title">Classifier resolvers: building agents that know when to stop</div>
+        <div><span class="tag ml">AI &amp; ML</span></div>
+        <div class="date">March 28, 2026</div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a class="archive-row" onclick="goto('#post')">
+        <div class="idx">#086</div>
+        <div class="thumb-sm"><div class="placeholder p-architecture">·</div></div>
+        <div class="title">Event-driven, eventually confusing</div>
+        <div><span class="tag architecture">Architecture</span></div>
+        <div class="date">March 22, 2026</div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a class="archive-row" onclick="goto('#post')">
+        <div class="idx">#085</div>
+        <div class="thumb-sm"><div class="placeholder p-data">·</div></div>
+        <div class="title">When to use CDC, when to just poll</div>
+        <div><span class="tag data">Data Platform</span></div>
+        <div class="date">March 18, 2026</div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a class="archive-row" onclick="goto('#post')">
+        <div class="idx">#084</div>
+        <div class="thumb-sm"><div class="placeholder p-devops">·</div></div>
+        <div class="title">Terraform modules that scale without becoming a religion</div>
+        <div><span class="tag devops">DevOps</span></div>
+        <div class="date">March 15, 2026</div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a class="archive-row" onclick="goto('#post')">
+        <div class="idx">#083</div>
+        <div class="thumb-sm"><div class="placeholder p-engineering">·</div></div>
+        <div class="title">Testing the seams, not the code</div>
+        <div><span class="tag engineering">Engineering</span></div>
+        <div class="date">March 10, 2026</div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a class="archive-row" onclick="goto('#post')">
+        <div class="idx">#082</div>
+        <div class="thumb-sm"><div class="placeholder p-devops">·</div></div>
+        <div class="title">Secret rotation without the 3am page</div>
+        <div><span class="tag devops">DevOps</span></div>
+        <div class="date">March 04, 2026</div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a class="archive-row" onclick="goto('#post')">
+        <div class="idx">#081</div>
+        <div class="thumb-sm"><div class="placeholder p-data">·</div></div>
+        <div class="title">Change data capture, debezium, and the illusion of real-time</div>
+        <div><span class="tag data">Data Platform</span></div>
+        <div class="date">February 29, 2026</div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<!-- ===== ABOUT ===== -->
+<main id="page-about" class="page" hidden>
+  <section class="about-hero">
+    <div class="container">
+      <div class="about-avatar">W</div>
+      <div class="hero-kicker">— About —</div>
+      <h1 class="hero-title">Hi, I'm <em>Wander</em></h1>
+      <p class="hero-sub">Software engineer based in Brazil. I write about systems that outlive their first whiteboard sketch.</p>
+    </div>
+  </section>
+
+  <section class="container-narrow">
+    <div class="about-body">
+      <p>I've been building software for about fifteen years. Most of it in the boring, load-bearing parts of industries that can't afford to be boring — mortgage, banking, healthcare, logistics. The kind of systems where a rounding error is a legal problem and "we'll fix it in the next sprint" isn't a plan.</p>
+      <p>My day job is platform engineering and architecture. I care a lot about the seams between teams, the interfaces between services, and the quiet decisions that determine whether a codebase stays pleasant to work in after year three.</p>
+      <p>This site is where I write about that. It's also where I keep notes on things I'm learning — Go, Kotlin, agentic systems, data platforms, the occasional detour into K8s internals. I don't publish on a schedule. I publish when I have something that's been rattling around long enough to be worth the effort of writing it down.</p>
+    </div>
+
+    <div class="about-stats">
+      <div class="about-stat"><div class="n">92</div><div class="l">Notes</div></div>
+      <div class="about-stat"><div class="n">15<em>y</em></div><div class="l">Writing code</div></div>
+      <div class="about-stat"><div class="n">75<em>+</em></div><div class="l">OSS repos</div></div>
+      <div class="about-stat"><div class="n">BR</div><div class="l">Based in</div></div>
+    </div>
+
+    <div class="about-now">
+      <h3>◈ Currently</h3>
+      <ul>
+        <li>Building a sandbox platform for long-running mortgage workflows</li>
+        <li>Exploring agent-based classifier/resolver patterns</li>
+        <li>Writing the third draft of an essay I keep deleting</li>
+        <li>Reading <i>Data-Intensive Applications</i> for the fourth time</li>
+      </ul>
+    </div>
+
+    <div class="about-body">
+      <p>If any of this resonates, or you're working on a similar problem and want to compare notes, my inbox is open. You'll find me on <a href="https://github.com/wfercosta" target="_blank">GitHub</a>, <a href="https://linkedin.com/in/wfercosta" target="_blank">LinkedIn</a>, and occasionally on <a href="https://dev.to/wfercosta" target="_blank">dev.to</a>. I reply to every thoughtful email — eventually.</p>
+    </div>
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#home" data-nav>
+          <span class="brand-mark">wf</span>
+          <span class="brand-name">wfercosta<em>/notes</em></span>
+        </a>
+        <p>Engineering notes on software, architecture, and the quiet craft of shipping systems that last.</p>
+      </div>
+      <div>
+        <h5>Site</h5>
+        <ul>
+          <li><a href="#home" data-nav>Articles</a></li>
+          <li><a href="#archive" data-nav>Archive</a></li>
+          <li><a href="#about" data-nav>About</a></li>
+          <li><a href="#">RSS feed</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Topics</h5>
+        <ul>
+          <li><a href="#archive" data-nav>Engineering</a></li>
+          <li><a href="#archive" data-nav>Architecture</a></li>
+          <li><a href="#archive" data-nav>Data Platform</a></li>
+          <li><a href="#archive" data-nav>AI &amp; ML</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <ul>
+          <li><a href="https://github.com/wfercosta" target="_blank">GitHub ↗</a></li>
+          <li><a href="https://linkedin.com/in/wfercosta" target="_blank">LinkedIn ↗</a></li>
+          <li><a href="https://dev.to/wfercosta" target="_blank">dev.to ↗</a></li>
+          <li><a href="https://twitter.com/wfercosta" target="_blank">Twitter ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© 2026 wfercosta.com · Built with Jekyll &amp; obsession</span>
+      <span>v2026.04</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Tweaks panel -->
+<div class="tweaks" id="tweaks">
+  <h4>Tweaks <span id="tweaksClose" style="cursor:pointer">×</span></h4>
+  <label>Theme <span class="switch" id="tweakTheme"></span></label>
+</div>
+
+<script>
+// ===== Routing =====
+const pages = ['home', 'post', 'archive', 'about'];
+function goto(hash) {
+  const target = (hash || '#home').replace('#', '');
+  pages.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    if (el) el.hidden = (p !== target);
+  });
+  document.querySelectorAll('[data-nav]').forEach(a => {
+    const h = a.getAttribute('href').replace('#', '');
+    a.classList.toggle('active', h === target);
+  });
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  if (location.hash !== '#' + target) history.replaceState(null, '', '#' + target);
+}
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-nav]');
+  if (a) {
+    e.preventDefault();
+    goto(a.getAttribute('href'));
+  }
+});
+window.addEventListener('hashchange', () => goto(location.hash));
+goto(location.hash || '#home');
+
+// ===== Theme toggle =====
+const themeBtn = document.getElementById('themeToggle');
+const html = document.documentElement;
+function setTheme(t) {
+  html.setAttribute('data-theme', t);
+  localStorage.setItem('theme', t);
+  const sw = document.getElementById('tweakTheme');
+  if (sw) sw.classList.toggle('on', t === 'light');
+}
+setTheme(localStorage.getItem('theme') || TWEAK_DEFAULS.theme || 'dark');
+themeBtn.addEventListener('click', () => {
+  setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+
+// ===== Categories scroll =====
+const cats = document.getElementById('categories');
+document.getElementById('catPrev')?.addEventListener('click', () => cats.scrollBy({ left: -300, behavior: 'smooth' }));
+document.getElementById('catNext')?.addEventListener('click', () => cats.scrollBy({ left: 300, behavior: 'smooth' }));
+
+// ===== Tweaks =====
+const tweaks = document.getElementById('tweaks');
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode') tweaks.classList.add('active');
+  if (e.data?.type === '__deactivate_edit_mode') tweaks.classList.remove('active');
+});
+document.getElementById('tweaksClose').addEventListener('click', () => tweaks.classList.remove('active'));
+document.getElementById('tweakTheme').addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  setTheme(next);
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { theme: next } }, '*');
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+</script>
+</body>
+</html>

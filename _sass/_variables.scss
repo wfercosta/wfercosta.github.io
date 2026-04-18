@@ -1,13 +1,53 @@
-// Fonts
-$font-primary: 'Karla', sans-serif;
+/* Engineering Notes — design tokens */
+:root {
+  --bg: #0a0a0c;
+  --bg-elev: #111114;
+  --bg-card: #13131a;
+  --bg-card-hover: #1a1a23;
+  --border: rgba(255,255,255,0.06);
+  --border-strong: rgba(255,255,255,0.1);
+  --fg: #ededf0;
+  --fg-dim: #a1a1aa;
+  --fg-mute: #6b6b78;
+  --accent: #a78bfa;
+  --accent-strong: #8b5cf6;
+  --accent-soft: rgba(139, 92, 246, 0.12);
+  --glow: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(139, 92, 246, 0.28), transparent 60%);
 
-// Colors
-//$color-accent: #d20068;
-$color-accent: #039405;
-$gray: #a1a1a7;
-$gray-dark: #535358;
-$gray-darkest: #2f313d;
-$gray-light: #d8d8d8;
-$gray-lighter: #e5e7e9;
-$gray-lightest: #f9f9fb;
-$yellow: #fffac4;
+  --tag-health: #f87171;
+  --tag-remedies: #c084fc;
+  --tag-resources: #fb923c;
+  --tag-basics: #60a5fa;
+  --tag-tech: #34d399;
+  --tag-updates: #fbbf24;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 0 rgba(255,255,255,0.04) inset, 0 0 0 1px rgba(255,255,255,0.04);
+  --shadow-glow: 0 0 40px -8px rgba(139, 92, 246, 0.4);
+
+  --font-serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+  --font-sans: 'Geist', 'Inter', -apple-system, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+}
+
+[data-theme="light"] {
+  --bg: #fafaf7;
+  --bg-elev: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f5f5f0;
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.14);
+  --fg: #18181b;
+  --fg-dim: #52525b;
+  --fg-mute: #8a8a93;
+  --accent: #7c3aed;
+  --accent-strong: #6d28d9;
+  --accent-soft: rgba(124, 58, 237, 0.08);
+  --glow: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(124, 58, 237, 0.12), transparent 60%);
+  --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.05);
+  --shadow-glow: 0 0 40px -8px rgba(124, 58, 237, 0.3);
+}

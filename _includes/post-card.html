@@ -1,0 +1,27 @@
+{% assign post = include.post %}
+<a href="{{ site.baseurl }}{{ post.url }}" class="card">
+  <div class="card-media">
+    {% if post.featured_image %}
+      <img src="{{ site.baseurl }}/{{ post.featured_image }}" alt="{{ post.title }}" style="width:100%;height:100%;object-fit:cover;">
+    {% else %}
+      {% assign first_tag = post.tags | first | downcase %}
+      {% assign ph_class = "p-engineering" %}
+      {% if first_tag contains "architecture" %}{% assign ph_class = "p-architecture" %}
+      {% elsif first_tag contains "data" %}{% assign ph_class = "p-data" %}
+      {% elsif first_tag contains "devops" %}{% assign ph_class = "p-devops" %}
+      {% elsif first_tag contains "ai" or first_tag contains "ml" %}{% assign ph_class = "p-ml" %}
+      {% elsif first_tag contains "update" %}{% assign ph_class = "p-updates" %}
+      {% endif %}
+      <div class="placeholder {{ ph_class }}">{{ first_tag }}</div>
+    {% endif %}
+  </div>
+  <div class="card-body">
+    {% if post.tags.size > 0 %}
+      {% assign post_first_tag = post.tags | first %}
+      {% include tag.html category=post_first_tag %}
+    {% endif %}
+    <div class="card-title">{{ post.title }}</div>
+    <div class="card-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</div>
+    <div class="card-meta">{{ post.date | date: "%b %-d, %Y" }} · {{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min read</div>
+  </div>
+</a>

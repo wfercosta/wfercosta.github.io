@@ -1,48 +1,21 @@
-/**
- * Main JS file for Horace behaviours
- */
-(function ($) {
-	"use strict";
+// Theme toggle
+(function() {
+  var btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  btn.addEventListener('click', function() {
+    var current = document.documentElement.getAttribute('data-theme') || 'dark';
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+})();
 
-	var $body = $('body');
-
-	$(document).ready(function(){
-
-		// Responsive video embeds
-		$('.post-content').fitVids();
-
-		// Scroll to top
-		$('#top-button').on('click', function(e) {
-			$('html, body').animate({
-				'scrollTop': 0
-			});
-			e.preventDefault();
-		});
-		
-		// Sidebar
-		$('#sidebar-show, #sidebar-hide').on('click', function(e){
-			$body.toggleClass('sidebar--opened');
-			$(this).blur();
-			e.preventDefault();
-		});
-		$('#site-overlay').on('click', function(e){
-			$body.removeClass('sidebar--opened');
-			e.preventDefault();
-		});
-
-		// Show comments
-		var interval = setInterval(function() {
-			var disqusHeight = $('#disqus_thread').height();
-			if ( disqusHeight > 100 ) {
-				$('#comments-area').addClass('comments--loaded');
-				clearInterval(interval);
-			}
-		}, 100);
-		$('#comments-overlay, #comments-show').on('click', function(e){
-			$('#comments-area').removeClass('comments--loaded').addClass('comments--opened');
-			e.preventDefault();
-		});
-
-	});
-
-}(jQuery));
+// Categories horizontal scroll
+(function() {
+  var strip = document.getElementById('categories-strip');
+  var prev = document.getElementById('cat-prev');
+  var next = document.getElementById('cat-next');
+  if (!strip) return;
+  if (prev) prev.addEventListener('click', function() { strip.scrollBy({ left: -300, behavior: 'smooth' }); });
+  if (next) next.addEventListener('click', function() { strip.scrollBy({ left: 300, behavior: 'smooth' }); });
+})();

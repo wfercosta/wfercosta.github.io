@@ -1,0 +1,17 @@
+{% assign tag_name = include.name %}
+{% assign tag_class = "engineering" %}
+{% assign icon = include.icon | default: "⚙️" %}
+{% assign tag_lower = tag_name | downcase %}
+{% if tag_lower contains "architecture" %}{% assign tag_class = "architecture" %}{% assign icon = "🏛️" %}
+{% elsif tag_lower contains "data" %}{% assign tag_class = "data" %}{% assign icon = "📊" %}
+{% elsif tag_lower contains "devops" %}{% assign tag_class = "devops" %}{% assign icon = "🚀" %}
+{% elsif tag_lower contains "ai" or tag_lower contains "ml" or tag_lower contains "machine" %}{% assign tag_class = "ml" %}{% assign icon = "🤖" %}
+{% elsif tag_lower contains "update" %}{% assign tag_class = "updates" %}{% assign icon = "📝" %}
+{% endif %}
+<a href="{{ site.baseurl }}/tags#{{ tag_name | cgi_escape }}" class="cat-card">
+  <div class="cat-icon" style="background: var(--accent-soft);">{{ icon }}</div>
+  <div class="cat-meta">
+    <span class="cat-name">{{ tag_name }}</span>
+    <span class="cat-count">{{ include.count }} posts</span>
+  </div>
+</a>

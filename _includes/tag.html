@@ -1,0 +1,9 @@
+{% assign cat = include.category | downcase | strip %}
+{% assign tag_class = "engineering" %}
+{% if cat contains "architecture" %}{% assign tag_class = "architecture" %}
+{% elsif cat contains "data" %}{% assign tag_class = "data" %}
+{% elsif cat contains "devops" %}{% assign tag_class = "devops" %}
+{% elsif cat contains "ai" or cat contains "ml" or cat contains "machine" %}{% assign tag_class = "ml" %}
+{% elsif cat contains "update" %}{% assign tag_class = "updates" %}
+{% endif %}
+<span class="tag {{ tag_class }}">{{ include.category }}</span>

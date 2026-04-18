@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+<div class="about-hero">
+  <div class="container">
+    <div class="about-avatar">
+      {% if site.author.image %}
+        <img src="{{ site.baseurl }}/assets/images/{{ site.author.image }}" alt="{{ site.author.name }}">
+      {% else %}
+        W
+      {% endif %}
+    </div>
+    <span class="hero-kicker">— About —</span>
+    <h1 class="hero-title">Hi, I'm <em>Wander</em></h1>
+  </div>
+</div>
+
+<div class="container-narrow">
+  <div class="about-body">
+    {{ content }}
+  </div>
+
+  <div class="about-stats">
+    <div class="about-stat">
+      <div class="n">{{ site.posts | size }}<em>+</em></div>
+      <div class="l">Notes</div>
+    </div>
+    <div class="about-stat">
+      <div class="n">15<em>y</em></div>
+      <div class="l">Experience</div>
+    </div>
+    <div class="about-stat">
+      <div class="n">75<em>+</em></div>
+      <div class="l">Topics</div>
+    </div>
+    <div class="about-stat">
+      <div class="n">BR</div>
+      <div class="l">Based in</div>
+    </div>
+  </div>
+
+  <div class="about-now">
+    <h3>Currently</h3>
+    <ul>
+      <li>Building distributed systems &amp; platform engineering</li>
+      <li>Writing about Software Architecture &amp; Data</li>
+      <li>Exploring AI/ML applications in engineering</li>
+    </ul>
+  </div>
+</div>

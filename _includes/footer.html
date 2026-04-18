@@ -1,0 +1,45 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="{{ site.baseurl }}/" class="brand">
+          <div class="brand-mark">wf</div>
+          <span class="brand-name">Engineering <em>Notes</em></span>
+        </a>
+        <p>{{ site.description | strip_html | truncate: 120 }}</p>
+      </div>
+      <div>
+        <h5>Site</h5>
+        <ul>
+          <li><a href="{{ site.baseurl }}/">Home</a></li>
+          <li><a href="{{ site.baseurl }}/tags">Archive</a></li>
+          <li><a href="{{ site.baseurl }}/about">About</a></li>
+          <li><a href="{{ site.baseurl }}/feed.xml">RSS Feed</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Topics</h5>
+        <ul>
+          {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+          {% assign sortedTags = site_tags | split:',' | sort %}
+          {% for tag in sortedTags limit:6 %}
+            <li><a href="{{ site.baseurl }}/tags#{{ tag | cgi_escape }}">{{ tag }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <ul>
+          {% if site.github %}<li><a href="https://github.com/{{ site.github }}" target="_blank" rel="noopener">GitHub ↗</a></li>{% endif %}
+          {% if site.twitter %}<li><a href="https://twitter.com/{{ site.twitter }}" target="_blank" rel="noopener">Twitter ↗</a></li>{% endif %}
+          {% if site.linkedin %}<li><a href="https://linkedin.com/in/{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn ↗</a></li>{% endif %}
+          {% if site.devto %}<li><a href="https://dev.to/{{ site.devto }}" target="_blank" rel="noopener">Dev.to ↗</a></li>{% endif %}
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© {{ site.time | date: '%Y' }} {{ site.author.name }}. All rights reserved.</span>
+      <span>Built with Jekyll · Open Source</span>
+    </div>
+  </div>
+</footer>
