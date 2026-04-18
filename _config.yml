@@ -34,10 +34,10 @@ devto: "wfercosta"
 
 # Navigation
 navigation:
-  #- text: About
-  #  url: /about
   - text: Archive
     url: /tags
+  - text: About
+    url: /about
 
 # Required Plugins
 plugins_dir:

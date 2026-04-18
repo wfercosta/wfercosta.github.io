@@ -1,32 +1,83 @@
 ---
 layout: default
-title: Post list
+title: Archive
 ---
 
-<main id="main" class="site-main">
-    <div class="post-full inner">
-        <header class="page-header">
-            <h1 class="page-title">{{ page.title }}</h1>
-        </header>
-        <div class="post-content inner">
-            <div class="post-tags">
-                {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
-                {% assign sortedTags = site_tags | split:',' | sort %}
-                {% for tag in sortedTags %}
-                <a href="#{{ tag | cgi_escape }}">{{ tag }} </a>
-                {% endfor %}
-            </div><!-- .post-tags -->
-            {% for tag in sortedTags %}
-            <h2 id="{{ tag | cgi_escape }}">{{ tag }}</h2>
-            <ul class="archive-posts-list">
-                {% for post in site.tags[tag] %}
-                <li><a href="{{ site.baseurl }}{{ post.url }}" rel="bookmark">{{ post.title }}</a>
-                    <span class="post-meta"> — <time class="published" datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date: "%B %-d, %Y" }}</time></span>
-                </li>
-                {% endfor %}
-            </ul>
-            <p><a href="#page" class="tag-top-button">Return to top </a></p>
-            {% endfor %}
-        </div><!-- .entry-box -->
-    </div><!-- .inner -->
-</main><!-- .site-main -->
+<div class="archive-hero">
+  <div class="container">
+    <span class="hero-kicker">— Archive —</span>
+    <h1 class="hero-title">Everything, <em>sorted</em></h1>
+
+    <!-- Tag cloud -->
+    <div class="tag-cloud">
+      {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+      {% assign sortedTags = site_tags | split:',' | sort %}
+      <button class="tag-pill active" data-filter="all">All <span class="count">{{ site.posts | size }}</span></button>
+      {% for tag in sortedTags %}
+        {% assign tag_count = site.tags[tag] | size %}
+        <button class="tag-pill" data-filter="{{ tag | cgi_escape }}" id="pill-{{ tag | cgi_escape }}">{{ tag }} <span class="count">{{ tag_count }}</span></button>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="archive-list" id="archive-list">
+    {% assign all_posts = site.posts %}
+    {% for post in all_posts %}
+    <a href="{{ site.baseurl }}{{ post.url }}" class="archive-row" data-tags="{{ post.tags | join: ',' | cgi_escape }}">
+      <div class="idx">#{{ forloop.index | prepend: "00" | slice: -3, 3 }}</div>
+      <div class="date">{{ post.date | date: "%b %Y" }}</div>
+      <div class="thumb-sm">
+        {% if post.featured_image_thumbnail %}
+          <img src="{{ site.baseurl }}/{{ post.featured_image_thumbnail }}" alt="" style="width:100%;height:100%;object-fit:cover;">
+        {% elsif post.featured_image %}
+          <img src="{{ site.baseurl }}/{{ post.featured_image }}" alt="" style="width:100%;height:100%;object-fit:cover;">
+        {% else %}
+          {% assign first_tag = post.tags | first | downcase %}
+          {% assign ph_class = "p-engineering" %}
+          {% if first_tag contains "architecture" %}{% assign ph_class = "p-architecture" %}
+          {% elsif first_tag contains "data" %}{% assign ph_class = "p-data" %}
+          {% elsif first_tag contains "devops" %}{% assign ph_class = "p-devops" %}
+          {% elsif first_tag contains "ai" or first_tag contains "ml" %}{% assign ph_class = "p-ml" %}
+          {% elsif first_tag contains "update" %}{% assign ph_class = "p-updates" %}
+          {% endif %}
+          <div class="placeholder {{ ph_class }}" style="width:100%;height:100%;"></div>
+        {% endif %}
+      </div>
+      <div class="title">{{ post.title }}</div>
+      <div>
+        {% if post.tags.size > 0 %}{% assign ar_tag = post.tags | first %}{% include tag.html category=ar_tag %}{% endif %}
+      </div>
+      <div class="read">{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min</div>
+      <div class="arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  (function() {
+    var pills = document.querySelectorAll('.tag-pill');
+    pills.forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        pills.forEach(function(p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+        var filter = pill.dataset.filter;
+        var rows = document.querySelectorAll('.archive-row');
+        rows.forEach(function(row) {
+          if (filter === 'all') {
+            row.style.display = '';
+          } else {
+            var tags = decodeURIComponent(row.dataset.tags || '');
+            row.style.display = tags.split(',').some(function(t) {
+              return encodeURIComponent(t.trim()) === filter || t.trim() === decodeURIComponent(filter);
+            }) ? '' : 'none';
+          }
+        });
+      });
+    });
+  })();
+</script>

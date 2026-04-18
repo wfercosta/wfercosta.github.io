@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # This will help ensure the proper Jekyll version is running.
-gem "jekyll", "~> 4.2.0"
+gem "jekyll", "~> 4.3"
 
 group :jekyll_plugins do
   gem 'jekyll-paginate'
@@ -10,4 +10,4 @@ group :jekyll_plugins do
 end
 
 
-gem "webrick", "~> 1.8"
+gem "webrick", ">= 1.8"

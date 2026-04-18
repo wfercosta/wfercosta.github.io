@@ -1,112 +1,97 @@
 ---
 layout: default
-disqus: false
-post_class: post-template
 ---
 
-<div id="content" class="site-content fadeInDown delay_075s">
-    <main id="main" class="site-main outer">
-        <article class="post-full inner">
-            <header class="post-header">
-                <div class="post-meta">
-                    <time class="post-date" datetime="{{ page.date | date: " %Y-%m-%d" }}">{{ page.date | date: "%B %-d,
-                        %Y" }}</time>
-                </div><!-- .post-meta -->
-                <h1 class="posttitle">{{ page.title }}</h1>
-            </header><!-- .post-header -->
-            {% if page.featured_image %}
-            <div class="post-thumbnail"><img class="featured-image img-fluid"
-                    src="{{ site.baseurl }}{{ page.featured_image }}" alt="{{ page.title }}"></div>
-            {% endif %}
-            <div class="post-content">
-                {{content}}
-            </div>
-            <footer class="post-footer">
-                {% if page.tags.size > 0 %}
-                <p class="post-tags">
-                    {% for tag in page.tags %}<a href="{{ site.baseurl }}/tags/index.html#{{ tag | cgi_escape }}"
-                        rel="tag">{{ tag }}</a>{% endfor %}
-                </p>
-                {% endif %}
-                <div class="post-share">
-                    <span class="post-share-title">Share:</span>
-                    <a target="_blank"
-                        href="https://twitter.com/share?text={{ page.title | url_encode }}&amp;url={{ site.production_url }}{{ page.url | remove_first: '/' }}">Twitter</a>
-                    <a target="_blank"
-                        href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.production_url }}{{ page.url | remove_first: '/' }}">LinkedIn</a>
-                </div><!-- .share-post -->
-            </footer>
-            <div class="author-box">
-                <div class="author-avatar"><img src="{{ site.baseurl }}/assets/images/{{ site.author.image }}"
-                        alt="{{ site.author.name }}'s Picture" class="avatar"></div>
-                <div class="author-details">
-                    <h2 class="author-title">About {{ site.author.name }}</h2>
-                    <p class="author-description">{{ site.author.bio }}</p>
-                </div>
-            </div>
-            {% include disqus.html %}
-        </article>
-        {% if site.mailchimp_url %}
-        {% include newsletter-box.html %}
+<!-- Post Hero -->
+<div class="post-hero">
+  <div class="container">
+    <div class="post-meta-top">
+      {% if page.tags.size > 0 %}
+        {% assign first_tag = page.tags | first %}
+        {% include tag.html category=first_tag %}
+      {% endif %}
+      <span>{{ page.date | date: "%B %-d, %Y" }}</span>
+      <span>{{ page.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+    </div>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.excerpt %}
+    <p class="post-lede">{{ page.excerpt | strip_html | truncate: 200 }}</p>
+    {% endif %}
+    <div class="post-author">
+      <div class="avatar">
+        {% if site.author.image %}
+          <img src="{{ site.baseurl }}/assets/images/{{ site.author.image }}" alt="{{ site.author.name }}">
         {% endif %}
-        <section class="read-next inner">
-            <h2 class="read-next-title">Read Next</h2>
-            {% if page.previous.url %}
-            <article class="post">
-                <header class="post-header">
-                    <div class="post-meta">
-                        <time class="published"
-                            datetime="{{page.previous.date | date: '%B %-d, %Y'}}">{{page.previous.date
-                            | date: "%B %-d, %Y"}}</time>
-                    </div>
-                    <h3 class="post-title"><a href="{{ site.baseurl }}{{page.previous.url}}">{{page.previous.title}}</a>
-                    </h3>
-                    <p class="post-tags">
-                        {% if page.previous.tags.size > 0 %}
-                        {% for tag in page.previous.tags %}<a href="{{ site.baseurl }}/tags/index.html#{{ tag | cgi_escape }}"
-                        rel="tag">{{ tag }}</a>{% endfor %}
-                        {% endif %}
-                    </p>
-                </header>
-                {% if page.previous.featured_image_thumbnail %}
-                <a href="{{ site.baseurl }}{{page.previous.url}}" class="post-thumbnail">
-                    <img src="{{ page.previous.featured_image_thumbnail }}" alt="{{page.previous.title}}" />
-                </a>
-                {% elsif page.previous.featured_image %}
-                <a href="{{ site.baseurl }}{{page.previous.url}}" class="post-thumbnail">
-                    <img src="{{ page.previous.featured_image }}" alt="{{page.previous.title}}" />
-                </a>
-                {% else %}
-                {% endif %}
-            </article>
-            {% endif %}
-            {% if page.next.url %}
-            <article class="post">
-                <header class="post-header">
-                    <div class="post-meta">
-                        <time class="published" datetime="{{page.next.date | date: '%B %-d, %Y'}}">{{page.next.date |
-                            date: "%B %-d, %Y"}}</time>
-                    </div>
-                    <h3 class="post-title"><a href="{{ site.baseurl }}{{page.next.url}}">{{page.next.title}}</a></h3>
-                    <p class="post-tags">
-                        {% if page.next.tags.size > 0 %}
-                        {% for tag in page.next.tags %}<a href="{{ site.baseurl }}/tags/index.html#{{ tag | cgi_escape }}"
-                        rel="tag">{{ tag }}</a>{% endfor %}
-                        {% endif %}
-                    </p>
-                </header>
-                {% if page.next.featured_image_thumbnail %}
-                <a href="{{ site.baseurl }}{{page.next.url}}" class="post-thumbnail">
-                    <img src="{{ page.next.featured_image_thumbnail }}" alt="{{page.next.title}}" />
-                </a>
-                {% elsif page.next.featured_image %}
-                <a href="{{ site.baseurl }}{{page.next.url}}" class="post-thumbnail">
-                    <img src="{{ page.next.featured_image }}" alt="{{page.next.title}}" />
-                </a>
-                {% else %}
-                {% endif %}
-            </article>
-            {% endif %}
-        </section><!-- .read-next -->
-    </main><!-- .site-main -->
-</div><!-- .site-content -->
+      </div>
+      <div>
+        <b>{{ site.author.name }}</b><br>
+        <span>Software Engineer</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if page.featured_image %}
+<div class="post-cover container">
+  <img src="{{ site.baseurl }}{{ page.featured_image }}" alt="{{ page.title }}">
+</div>
+{% endif %}
+
+<!-- Post Body -->
+<div class="container-narrow">
+  <div class="post-body">
+    {{ content }}
+  </div>
+
+  <!-- Post Footer -->
+  <div class="post-footer">
+    {% if page.tags.size > 0 %}
+    <div class="post-tags-row">
+      {% for tag in page.tags %}
+        <a href="{{ site.baseurl }}/tags#{{ tag | cgi_escape }}" class="post-tag-pill">{{ tag }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <div class="post-share">
+      <span>Share</span>
+      <a class="share-btn" href="https://twitter.com/share?text={{ page.title | url_encode }}&url={{ site.production_url }}{{ page.url | remove_first: '/' }}" target="_blank" rel="noopener" title="Share on Twitter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+      </a>
+      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.production_url }}{{ page.url | remove_first: '/' }}" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <button class="share-btn" id="copy-link" title="Copy link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Read Next -->
+  {% if page.previous or page.next %}
+  <div class="read-next">
+    <h2 class="read-next-title">Read Next</h2>
+    <div class="card-grid">
+      {% if page.previous %}
+        {% include post-card.html post=page.previous %}
+      {% endif %}
+      {% if page.next %}
+        {% include post-card.html post=page.next %}
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<script>
+  document.getElementById('copy-link') && document.getElementById('copy-link').addEventListener('click', function() {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      var btn = document.getElementById('copy-link');
+      btn.style.color = 'var(--accent)';
+      btn.style.borderColor = 'var(--accent)';
+      setTimeout(function() {
+        btn.style.color = '';
+        btn.style.borderColor = '';
+      }, 1500);
+    });
+  });
+</script>

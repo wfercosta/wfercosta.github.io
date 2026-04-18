@@ -1,88 +1,52 @@
-/**
- * 4. Site Header
- * ----------------------------------------------------------------------------
- */
- .site-header {
-  background: $gray-lightest;
-  border-bottom: 1px solid $gray-lighter;
-  margin: 0 0 3.33333em;
-  padding-bottom: 1.11111em;
-  padding-top: 1.11111em;
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: color-mix(in oklab, var(--bg) 75%, transparent);
+  border-bottom: 1px solid var(--border);
 }
-
-.site-header a {
-  color: $gray-darkest;
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 0;
 }
-
-.site-header a:hover {
-  color: $color-accent;
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 600; letter-spacing: -0.01em;
 }
-
-.site-header-inside {
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+.brand-mark {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  display: grid; place-items: center;
+  color: #fff; font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+  box-shadow: var(--shadow-glow);
 }
+.brand-name { font-size: 15px; }
+.brand-name em { color: var(--fg-dim); font-style: normal; font-weight: 400; }
 
-.site-branding {
-  -ms-flex: 0 0 auto;
-  -webkit-flex: 0 0 auto;
-  flex: 0 0 auto;
-  margin-right: 30px;
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  font-size: 14px; color: var(--fg-dim);
+  transition: color 0.2s;
+  font-variant-emoji: text;
 }
+.nav-links a:hover, .nav-links a.active { color: var(--fg); }
 
-.site-logo {
-  margin: 0;
+.nav-actions { display: flex; gap: 10px; align-items: center; }
+
+.theme-toggle {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--fg-dim); cursor: pointer;
+  display: grid; place-items: center;
+  transition: all 0.2s;
 }
+.theme-toggle:hover { color: var(--fg); border-color: var(--border-strong); }
+.theme-toggle svg { width: 16px; height: 16px; }
+[data-theme="light"] .theme-toggle .moon { display: none; }
+[data-theme="light"] .theme-toggle .sun { display: block; }
+.theme-toggle .sun { display: none; }
+.theme-toggle .moon { display: block; }
 
-.site-logo img {
-  max-height: 48px;
-}
-
-.site-title {
-  color: $gray-darkest;
-  font-size: 1.33333rem;
-  font-weight: bold;
-  line-height: 1.2;
-  margin: 0;
-  text-rendering: optimizeLegibility;
-}
-
-.site-header .site-navigation {
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -ms-flex: 1 1 auto;
-  -webkit-flex: 1 1 auto;
-  flex: 1 1 auto;
-}
-
-.site-header .menu {
-  -ms-flex: 1 1 auto;
-  -webkit-flex: 1 1 auto;
-  flex: 1 1 auto;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.site-header .menu-item {
-  display: inline-block;
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 0 25px 0 0;
-}
-
-.site-header .sidebar-toggle {
-  -ms-flex: 0 0 auto;
-  -webkit-flex: 0 0 auto;
-  flex: 0 0 auto;
-  margin-left: auto;
-  position: relative;
+@media (max-width: 700px) {
+  .nav-links { display: none; }
 }

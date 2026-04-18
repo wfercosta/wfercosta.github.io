@@ -1,0 +1,28 @@
+{% assign post = include.post %}
+<a href="{{ site.baseurl }}{{ post.url }}" class="article-row">
+  <div class="thumb">
+    {% if post.featured_image_thumbnail %}
+      <img src="{{ site.baseurl }}/{{ post.featured_image_thumbnail }}" alt="{{ post.title }}" style="width:100%;height:100%;object-fit:cover;">
+    {% elsif post.featured_image %}
+      <img src="{{ site.baseurl }}/{{ post.featured_image }}" alt="{{ post.title }}" style="width:100%;height:100%;object-fit:cover;">
+    {% else %}
+      {% assign first_tag = post.tags | first | downcase %}
+      {% assign ph_class = "p-engineering" %}
+      {% if first_tag contains "architecture" %}{% assign ph_class = "p-architecture" %}
+      {% elsif first_tag contains "data" %}{% assign ph_class = "p-data" %}
+      {% elsif first_tag contains "devops" %}{% assign ph_class = "p-devops" %}
+      {% elsif first_tag contains "ai" or first_tag contains "ml" %}{% assign ph_class = "p-ml" %}
+      {% elsif first_tag contains "update" %}{% assign ph_class = "p-updates" %}
+      {% endif %}
+      <div class="placeholder {{ ph_class }}" style="width:100%;height:100%;"></div>
+    {% endif %}
+  </div>
+  <div class="body">
+    {% if post.tags.size > 0 %}
+      {% assign post_first_tag = post.tags | first %}
+      {% include tag.html category=post_first_tag %}
+    {% endif %}
+    <div class="title">{{ post.title }}</div>
+    <div class="meta">{{ post.date | date: "%b %-d, %Y" }} · {{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min read</div>
+  </div>
+</a>
