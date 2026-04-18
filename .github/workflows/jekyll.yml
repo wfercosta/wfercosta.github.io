@@ -2,7 +2,7 @@ name: Deploy Jekyll to GitHub Pages
 
 on:
   push:
-    branches: ["redesign-engineering-notes", "gh-pages"]
+    branches: ["gh-pages"]
   workflow_dispatch:
 
 permissions:
