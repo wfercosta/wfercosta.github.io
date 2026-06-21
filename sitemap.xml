@@ -1,0 +1,39 @@
+---
+layout: null
+sitemap: false
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- comment -%} Pages are rendered by polyglot in every language {%- endcomment -%}
+{%- for pg in site.html_pages -%}
+{%- unless pg.sitemap == false -%}
+{%- for lang in site.languages -%}
+{%- if lang == site.default_lang -%}{%- assign u = pg.url -%}{%- else -%}{%- assign u = '/' | append: lang | append: pg.url -%}{%- endif -%}
+  <url>
+    <loc>{{ site.url }}{{ site.baseurl }}{{ u }}</loc>
+{%- for alt in site.languages -%}
+{%- if alt == site.default_lang -%}{%- assign au = pg.url -%}{%- else -%}{%- assign au = '/' | append: alt | append: pg.url -%}{%- endif -%}
+    <xhtml:link rel="alternate" hreflang="{{ alt | replace: 'pt-br', 'pt-BR' }}" href="{{ site.url }}{{ site.baseurl }}{{ au }}" />
+{%- endfor -%}
+  </url>
+{%- endfor -%}
+{%- endunless -%}
+{%- endfor -%}
+{%- comment -%} Posts: one entry each at its language-prefixed URL, with ref-based alternates {%- endcomment -%}
+{%- for p in site.posts -%}
+{%- if p.lang == site.default_lang -%}{%- assign pu = p.url -%}{%- else -%}{%- assign pu = '/' | append: p.lang | append: p.url -%}{%- endif -%}
+  <url>
+    <loc>{{ site.url }}{{ site.baseurl }}{{ pu }}</loc>
+    <lastmod>{{ p.date | date_to_xmlschema }}</lastmod>
+{%- for alt in site.languages -%}
+{%- assign tgt = site.posts | where: "ref", p.ref | where: "lang", alt | first -%}
+{%- if tgt -%}
+{%- if alt == site.default_lang -%}{%- assign au = tgt.url -%}{%- else -%}{%- assign au = '/' | append: alt | append: tgt.url -%}{%- endif -%}
+    <xhtml:link rel="alternate" hreflang="{{ alt | replace: 'pt-br', 'pt-BR' }}" href="{{ site.url }}{{ site.baseurl }}{{ au }}" />
+{%- endif -%}
+{%- endfor -%}
+  </url>
+{%- endfor -%}
+</urlset>
