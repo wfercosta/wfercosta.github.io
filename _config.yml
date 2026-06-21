@@ -31,7 +31,7 @@ plugins_dir:
   - jekyll-polyglot
 
 # i18n (jekyll-polyglot) — requires building via GitHub Actions (not GH Pages native)
-languages: ["en", "pt-br"]
+languages: ["en", "br"]
 default_lang: "en"
 exclude_from_localization: ["assets", "css", "js", "images", "fonts", "feed.xml", "sitemap.xml", "robots.txt", "CNAME"]
 parallel_localization: true

@@ -24,7 +24,7 @@
         static_href emits ferh="…", which polyglot restores to href="…" WITHOUT
         prepending the active language — so cross-language links stay correct.
       {%- endcomment -%}
-      <a class="lang-opt{% if lang == cur_lang %} active{% endif %}" {% static_href %}href="{{ site.baseurl }}{{ href }}"{% endstatic_href %} hreflang="{{ lang | replace: 'pt-br', 'pt-BR' }}">{{ lang | replace: 'pt-br', 'PT' | replace: 'en', 'EN' }}</a>
+      <a class="lang-opt{% if lang == cur_lang %} active{% endif %}" {% static_href %}href="{{ site.baseurl }}{{ href }}"{% endstatic_href %} hreflang="{{ lang | replace: 'br', 'pt-BR' }}">{{ lang | replace: 'br', 'PT' | replace: 'en', 'EN' }}</a>
     {%- endif -%}
   {%- endfor -%}
 </div>

@@ -15,7 +15,7 @@ permalink: /sitemap.xml
     <loc>{{ site.url }}{{ site.baseurl }}{{ u }}</loc>
 {%- for alt in site.languages -%}
 {%- if alt == site.default_lang -%}{%- assign au = pg.url -%}{%- else -%}{%- assign au = '/' | append: alt | append: pg.url -%}{%- endif -%}
-    <xhtml:link rel="alternate" hreflang="{{ alt | replace: 'pt-br', 'pt-BR' }}" href="{{ site.url }}{{ site.baseurl }}{{ au }}" />
+    <xhtml:link rel="alternate" hreflang="{{ alt | replace: 'br', 'pt-BR' }}" href="{{ site.url }}{{ site.baseurl }}{{ au }}" />
 {%- endfor -%}
   </url>
 {%- endfor -%}
@@ -31,7 +31,7 @@ permalink: /sitemap.xml
 {%- assign tgt = site.posts | where: "ref", p.ref | where: "lang", alt | first -%}
 {%- if tgt -%}
 {%- if alt == site.default_lang -%}{%- assign au = tgt.url -%}{%- else -%}{%- assign au = '/' | append: alt | append: tgt.url -%}{%- endif -%}
-    <xhtml:link rel="alternate" hreflang="{{ alt | replace: 'pt-br', 'pt-BR' }}" href="{{ site.url }}{{ site.baseurl }}{{ au }}" />
+    <xhtml:link rel="alternate" hreflang="{{ alt | replace: 'br', 'pt-BR' }}" href="{{ site.url }}{{ site.baseurl }}{{ au }}" />
 {%- endif -%}
 {%- endfor -%}
   </url>

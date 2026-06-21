@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Rate Limiting: fundamentos e estratégias"
-lang: pt-br
+lang: br
 ref: rate-limiting
 tags: [engineering, architecture]
 featured_image_thumbnail: assets/images/posts/2018/1_thumbnail.jpg

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% assign page_lang = site.active_lang | default: site.default_lang %}
-<html lang="{{ page_lang | replace: 'pt-br', 'pt-BR' }}">
+<html lang="{{ page_lang | replace: 'br', 'pt-BR' }}">
 
 <head>
   <meta charset="utf-8">
@@ -28,7 +28,7 @@
     {% endif %}
     {% if alt_path %}
       {% if lang == site.default_lang %}{% assign alt_href = alt_path %}{% else %}{% assign alt_href = '/' | append: lang | append: alt_path %}{% endif %}
-      <link rel="alternate" hreflang="{{ lang | replace: 'pt-br', 'pt-BR' }}" href="{{ site.url }}{{ site.baseurl }}{{ alt_href }}" />
+      <link rel="alternate" hreflang="{{ lang | replace: 'br', 'pt-BR' }}" href="{{ site.url }}{{ site.baseurl }}{{ alt_href }}" />
     {% endif %}
   {% endfor %}
 

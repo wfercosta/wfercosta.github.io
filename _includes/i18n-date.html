@@ -12,7 +12,7 @@
 {%- assign _style = include.style | default: "short" -%}
 {%- assign _mfull = _t.months[_m] -%}
 {%- assign _mshort = _t.months_short[_m] -%}
-{%- if _lang == "pt-br" -%}
+{%- if _lang == "br" -%}
   {%- if _style == "full" -%}{{ _d }} de {{ _mfull }} de {{ _y }}
   {%- elsif _style == "monthyear" -%}{{ _mshort }} {{ _y }}
   {%- else -%}{{ _d }} de {{ _mshort }} de {{ _y }}{%- endif -%}
