@@ -27,6 +27,13 @@ plugins_dir:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-polyglot
+
+# i18n (jekyll-polyglot) — requires building via GitHub Actions (not GH Pages native)
+languages: ["en", "pt-br"]
+default_lang: "en"
+exclude_from_localization: ["assets", "css", "js", "images", "fonts", "feed.xml", "CNAME"]
+parallel_localization: true
 
 # Pagination
 paginate: 5
