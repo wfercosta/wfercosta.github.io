@@ -1,0 +1,30 @@
+{%- comment -%}
+  Language switcher. Each language is a real page in Jekyll/polyglot.
+  - On a post with a shared `ref`, link to the equivalent translation.
+  - Otherwise, link to the same page under the language prefix
+    (default_lang has no prefix; others live under /<lang>/).
+{%- endcomment -%}
+{%- assign cur_lang = site.active_lang | default: site.default_lang -%}
+<div class="lang-toggle">
+  {%- for lang in site.languages -%}
+    {%- assign path = nil -%}
+    {%- if page.ref -%}
+      {%- assign target = site.posts | where: "ref", page.ref | where: "lang", lang | first -%}
+      {%- if target -%}{%- assign path = target.url -%}{%- endif -%}
+    {%- else -%}
+      {%- assign path = page.url -%}
+    {%- endif -%}
+    {%- if path -%}
+      {%- if lang == site.default_lang -%}
+        {%- assign href = path -%}
+      {%- else -%}
+        {%- assign href = '/' | append: lang | append: path -%}
+      {%- endif -%}
+      {%- comment -%}
+        static_href emits ferh="…", which polyglot restores to href="…" WITHOUT
+        prepending the active language — so cross-language links stay correct.
+      {%- endcomment -%}
+      <a class="lang-opt{% if lang == cur_lang %} active{% endif %}" {% static_href %}href="{{ site.baseurl }}{{ href }}"{% endstatic_href %} hreflang="{{ lang | replace: 'pt-br', 'pt-BR' }}">{{ lang | replace: 'pt-br', 'PT' | replace: 'en', 'EN' }}</a>
+    {%- endif -%}
+  {%- endfor -%}
+</div>

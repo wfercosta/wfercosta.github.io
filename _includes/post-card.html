@@ -1,4 +1,6 @@
 {% assign post = include.post %}
+{% assign lang = site.active_lang | default: site.default_lang %}
+{% assign t = site.data.i18n[lang] %}
 <a href="{{ site.baseurl }}{{ post.url }}" class="card">
   <div class="card-media">
     {% if post.featured_image %}
@@ -22,6 +24,6 @@
     {% endif %}
     <div class="card-title">{{ post.title }}</div>
     <div class="card-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</div>
-    <div class="card-meta">{{ post.date | date: "%b %-d, %Y" }} · {{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min read</div>
+    <div class="card-meta">{% include i18n-date.html date=post.date %} · {{ post.content | number_of_words | divided_by: 200 | plus: 1 }} {{ t.post.read_time }}</div>
   </div>
 </a>

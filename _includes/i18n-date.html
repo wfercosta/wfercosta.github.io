@@ -1,0 +1,23 @@
+{%- comment -%}
+  Localized date renderer.
+  Params:
+    date  — a date value (required)
+    style — "full" (April 14, 2026), "short" (Apr 14, 2026), "monthyear" (Apr 2026). Default: short.
+{%- endcomment -%}
+{%- assign _lang = site.active_lang | default: site.default_lang -%}
+{%- assign _t = site.data.i18n[_lang] -%}
+{%- assign _m = include.date | date: "%-m" -%}
+{%- assign _d = include.date | date: "%-d" -%}
+{%- assign _y = include.date | date: "%Y" -%}
+{%- assign _style = include.style | default: "short" -%}
+{%- assign _mfull = _t.months[_m] -%}
+{%- assign _mshort = _t.months_short[_m] -%}
+{%- if _lang == "pt-br" -%}
+  {%- if _style == "full" -%}{{ _d }} de {{ _mfull }} de {{ _y }}
+  {%- elsif _style == "monthyear" -%}{{ _mshort }} {{ _y }}
+  {%- else -%}{{ _d }} de {{ _mshort }} de {{ _y }}{%- endif -%}
+{%- else -%}
+  {%- if _style == "full" -%}{{ _mfull }} {{ _d }}, {{ _y }}
+  {%- elsif _style == "monthyear" -%}{{ _mshort }} {{ _y }}
+  {%- else -%}{{ _mshort }} {{ _d }}, {{ _y }}{%- endif -%}
+{%- endif -%}

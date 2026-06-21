@@ -1,3 +1,5 @@
+{% assign lang = site.active_lang | default: site.default_lang %}
+{% assign t = site.data.i18n[lang] %}
 {% assign cat = include.category | downcase | strip %}
 {% assign tag_class = "engineering" %}
 {% if cat contains "architecture" %}{% assign tag_class = "architecture" %}
@@ -6,4 +8,5 @@
 {% elsif cat contains "ai" or cat contains "ml" or cat contains "machine" %}{% assign tag_class = "ml" %}
 {% elsif cat contains "update" %}{% assign tag_class = "updates" %}
 {% endif %}
-<span class="tag {{ tag_class }}">{{ include.category }}</span>
+{% assign tag_label = t.tags[cat] | default: include.category %}
+<span class="tag {{ tag_class }}">{{ tag_label }}</span>

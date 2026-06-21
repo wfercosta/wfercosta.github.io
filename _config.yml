@@ -3,6 +3,7 @@ name: "wfercosta.com"
 description: "A blog about Software Engineering, Software Architecture and Data. Content ranges from tools, programming languages, frameworks to methodologies."
 favicon: "assets/images/favicon.ico"
 baseurl: ""
+url: "https://wfercosta.com"
 production_url: https://wfercosta.com/
 
 # Author

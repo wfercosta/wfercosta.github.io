@@ -1,3 +1,5 @@
+{% assign lang = site.active_lang | default: site.default_lang %}
+{% assign t = site.data.i18n[lang] %}
 {% assign tag_name = include.name %}
 {% assign tag_class = "engineering" %}
 {% assign icon = include.icon | default: "⚙️" %}
@@ -8,10 +10,11 @@
 {% elsif tag_lower contains "ai" or tag_lower contains "ml" or tag_lower contains "machine" %}{% assign tag_class = "ml" %}{% assign icon = "🤖" %}
 {% elsif tag_lower contains "update" %}{% assign tag_class = "updates" %}{% assign icon = "📝" %}
 {% endif %}
+{% assign tag_label = t.tags[tag_lower] | default: tag_name %}
 <a href="{{ site.baseurl }}/tags#{{ tag_name | cgi_escape }}" class="cat-card">
   <div class="cat-icon" style="background: var(--accent-soft);">{{ icon }}</div>
   <div class="cat-meta">
-    <span class="cat-name">{{ tag_name }}</span>
-    <span class="cat-count">{{ include.count }} posts</span>
+    <span class="cat-name">{{ tag_label }}</span>
+    <span class="cat-count">{{ include.count }} {{ t.units.posts }}</span>
   </div>
 </a>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+{% assign page_lang = site.active_lang | default: site.default_lang %}
+<html lang="{{ page_lang | replace: 'pt-br', 'pt-BR' }}">
 
 <head>
   <meta charset="utf-8">
@@ -15,6 +16,21 @@
   {% endif %}
 
   <link rel="shortcut icon" href="{{ site.baseurl }}/{{ site.favicon }}" type="image/x-icon" />
+
+  {% comment %} hreflang alternates for each language {% endcomment %}
+  {% for lang in site.languages %}
+    {% assign alt_path = nil %}
+    {% if page.ref %}
+      {% assign alt_target = site.posts | where: "ref", page.ref | where: "lang", lang | first %}
+      {% if alt_target %}{% assign alt_path = alt_target.url %}{% endif %}
+    {% else %}
+      {% assign alt_path = page.url %}
+    {% endif %}
+    {% if alt_path %}
+      {% if lang == site.default_lang %}{% assign alt_href = alt_path %}{% else %}{% assign alt_href = '/' | append: lang | append: alt_path %}{% endif %}
+      <link rel="alternate" hreflang="{{ lang | replace: 'pt-br', 'pt-BR' }}" href="{{ site.url }}{{ site.baseurl }}{{ alt_href }}" />
+    {% endif %}
+  {% endfor %}
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "Rate Limiting: fundamentals and strategies"
-tags: [Software Engineering, System Design]
+lang: en
+ref: rate-limiting
+tags: [engineering, architecture]
 featured_image_thumbnail: assets/images/posts/2018/1_thumbnail.jpg
 featured_image: assets/images/posts/2018/1.jpg
 featured: true
-hidden: true
 ---
 
 Nowadays we live in a world that is extremely connected and it is not new to anyone that the companies must be capable of offering their products and services in a way that they could be used as part of anothers.
