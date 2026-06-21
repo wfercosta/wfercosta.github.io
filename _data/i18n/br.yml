@@ -1,0 +1,116 @@
+# Strings de UI — Português (Brasil)
+nav:
+  archive: "Arquivo"
+  about: "Sobre"
+  rss: "RSS"
+
+hero:
+  kicker: "— Artigos do Blog —"
+  title_1: "Notas de"
+  title_2: "Engenharia"
+  sub: "Textos sobre engenharia de software, arquitetura, plataformas de dados e a arte de construir sistemas que escalam."
+
+sections:
+  eng_arch: "Engenharia & Arquitetura"
+  latest: "Artigos Recentes"
+  recent_notes: "Notas Recentes"
+  all_categories: "Todas as Categorias"
+  view_all: "Ver todos ↗"
+
+panel:
+  title_1: "Todos os"
+  title_2: "Artigos"
+  sub: "Navegue pelo arquivo completo de notas de engenharia, artigos e aprofundamentos."
+  view_all: "Ver todos ↗"
+
+features:
+  rss_title: "Feed RSS"
+  rss_link: "Assinar via RSS ↗"
+  no_news_title: "Sem newsletter"
+  no_news_sub: "Sem spam, nunca."
+  oss_title: "Código Aberto"
+  oss_link: "Ver no GitHub ↗"
+
+footer:
+  site: "Site"
+  topics: "Tópicos"
+  elsewhere: "Em outros lugares"
+  home: "Início"
+  archive: "Arquivo"
+  about: "Sobre"
+  rss: "Feed RSS"
+  rights: "Todos os direitos reservados."
+  built_with: "Feito com Jekyll · Código Aberto"
+
+post:
+  read_time: "min de leitura"
+  share: "Compartilhar"
+  read_next: "Leia a seguir"
+  author_role: "Engenheiro de Software"
+
+archive:
+  kicker: "— Arquivo —"
+  title_1: "Tudo,"
+  title_2: "organizado"
+  all: "Tudo"
+  read_unit: "min"
+
+about:
+  kicker: "— Sobre —"
+  title_1: "Olá, eu sou o"
+  title_2: "Wander"
+  currently: "Atualmente"
+  stats:
+    notes: "Notas"
+    experience: "Experiência"
+    topics: "Tópicos"
+    based_in: "Onde moro"
+    based_value: "BR"
+  now:
+    - "Construindo sistemas distribuídos & engenharia de plataforma"
+    - "Escrevendo sobre Arquitetura de Software & Dados"
+    - "Explorando aplicações de IA/ML em engenharia"
+  body:
+    - "Engenheiro de software, entusiasta de tecnologia e leitor incansável, baseado no Brasil. Construo sistemas há mais de %YEARS% anos — de monolitos a microsserviços, do bare metal ao cloud-native."
+    - "Escrevo sobre as coisas que acho interessantes: sistemas distribuídos, engenharia de plataforma, arquitetura de dados e a interseção entre software e escala. Não é um blog de tutoriais — é mais um caderno onde desenvolvo ideias em público."
+    - "Quando não estou escrevendo código ou escrevendo sobre código, provavelmente estou lendo, praticando esportes ou atrás do próximo problema interessante."
+
+units:
+  posts: "posts"
+
+months:
+  "1": "janeiro"
+  "2": "fevereiro"
+  "3": "março"
+  "4": "abril"
+  "5": "maio"
+  "6": "junho"
+  "7": "julho"
+  "8": "agosto"
+  "9": "setembro"
+  "10": "outubro"
+  "11": "novembro"
+  "12": "dezembro"
+
+months_short:
+  "1": "jan"
+  "2": "fev"
+  "3": "mar"
+  "4": "abr"
+  "5": "mai"
+  "6": "jun"
+  "7": "jul"
+  "8": "ago"
+  "9": "set"
+  "10": "out"
+  "11": "nov"
+  "12": "dez"
+
+# Rótulos de tags por slug estável em inglês (as classes de cor CSS usam o slug)
+tags:
+  engineering: "Engenharia"
+  architecture: "Arquitetura"
+  data: "Plataforma de Dados"
+  devops: "DevOps"
+  ml: "IA & ML"
+  updates: "Novidades"

@@ -208,8 +208,168 @@ Nenhum state complexo. Apenas:
 - **Logo:** no mock é um quadrado `wf` com gradient roxo. Seu logo atual está em `assets/images/logo.png` — opcional manter via `{% if site.logo %}`.
 - **Favicon:** manter `assets/images/favicon.ico`.
 
+## Multi-idioma (i18n): pt-BR + en-US
+
+O protótipo já demonstra a troca de idioma (toggle `EN · PT` no nav). Abaixo, a arquitetura recomendada para implementar de verdade no Jekyll.
+
+### ⚠️ Constraint do GitHub Pages
+O plugin padrão de i18n (`jekyll-polyglot`) **NÃO está na whitelist do GitHub Pages**. Duas opções:
+- **(A) Buildar via GitHub Actions** (recomendado) — roda `jekyll build` num workflow e publica `_site/`. Libera qualquer plugin, incl. polyglot. Caminho moderno.
+- **(B) Manual sem plugin** — funciona no GH Pages nativo, mais trabalho de manutenção (subpastas `/pt-br/` + data files + seleção manual de posts por `page.lang`).
+
+Assumindo **(A) + jekyll-polyglot**:
+
+### Estrutura de arquivos
+```
+_config.yml
+_data/i18n/
+  en.yml          # strings de UI em inglês
+  pt-br.yml       # strings de UI em português
+_posts/
+  en/2026-04-14-process-platforms.md
+  pt-br/2026-04-14-plataformas-processo.md
+.github/workflows/build.yml   # jekyll build + deploy (opção A)
+```
+
+### `_config.yml`
+```yaml
+languages: ["en", "pt-br"]
+default_lang: "en"
+exclude_from_localization: ["assets", "css", "js", "images", "fonts"]
+parallel_localization: true
+```
+Gera: `wfercosta.com/` (EN, default sem prefixo) e `wfercosta.com/pt-br/` (PT).
+> Se o público é majoritariamente BR, inverta `default_lang: "pt-br"`.
+
+### UI strings em data files
+Toda string de interface sai de `_data/i18n/<lang>.yml`. Exemplo (`pt-br.yml`):
+```yaml
+nav: { articles: "Artigos", archive: "Arquivo", about: "Sobre", subscribe: "Inscrever-se" }
+hero:
+  kicker: "— Artigos do Blog —"
+  title_1: "Notas de"          # parte normal
+  title_2: "Engenharia"        # parte em itálico/accent (<em>)
+  sub: "Textos sobre engenharia de software, arquitetura, plataformas de dados, DevOps..."
+sections: { eng_arch: "Engenharia & Arquitetura", data_ai: "Dados & IA", all_categories: "Todas as Categorias" }
+read_all: "Ver todos →"
+read_next: "Leia a seguir"
+share: "Compartilhar"
+read_time_suffix: "min de leitura"
+footer: { site: "Site", topics: "Tópicos", elsewhere: "Em outros lugares", rss: "Feed RSS" }
+```
+No template:
+```liquid
+{% assign t = site.data.i18n[page.lang] %}
+<a href="{{ '/archive' | relative_url }}">{{ t.nav.archive }}</a>
+<h1 class="hero-title">{{ t.hero.title_1 }} <em>{{ t.hero.title_2 }}</em></h1>
+```
+
+### Categorias/tags: slug estável, label traduzido
+**Crítico para não quebrar o CSS.** As classes de cor (`.tag.architecture`, `.tag.data`, etc.) usam o **slug em inglês**. Só o rótulo visível traduz. Mapeie no data file:
+```yaml
+# pt-br.yml
+tags:
+  engineering: "Engenharia"
+  architecture: "Arquitetura"
+  data: "Plataforma de Dados"
+  devops: "DevOps"
+  ml: "IA & ML"
+  updates: "Novidades"
+  process: "Processo"
+```
+```liquid
+{% comment %} include _includes/tag.html com param `slug` {% endcomment %}
+<span class="tag {{ include.slug }}">{{ site.data.i18n[page.lang].tags[include.slug] }}</span>
+```
+Nos posts, use sempre o slug em inglês no front matter (`tags: [architecture]`), nunca o label traduzido.
+
+### Posts traduzidos + `ref`
+Cada post tem `lang` e um `ref` compartilhado entre traduções:
+```yaml
+# _posts/en/2026-04-14-process-platforms.md
+---
+layout: post
+title: "Designing process platforms for long-running business workflows"
+lang: en
+ref: process-platforms
+tags: [architecture]
+featured: true
+featured_image: /assets/images/posts/process-platforms.jpg
+---
+```
+```yaml
+# _posts/pt-br/2026-04-14-plataformas-processo.md
+---
+layout: post
+title: "Projetando plataformas de processo para fluxos de longa duração"
+lang: pt-br
+ref: process-platforms
+tags: [architecture]
+featured: true
+featured_image: /assets/images/posts/process-platforms.jpg
+---
+```
+O `ref` permite que, **dentro de um post**, o language toggle leve à tradução equivalente (não à home). Polyglot expõe isso via `post.ref`.
+
+### Language toggle no nav (substitui o JS do protótipo)
+No protótipo o toggle troca strings via JS. **No Jekyll, cada idioma é uma página real** — o toggle vira links. Adicionar ao lado do `theme-toggle`, herdando os tokens `.lang-toggle`/`.lang-opt` (já no `styles.css`):
+```liquid
+<div class="lang-toggle">
+  {% for lang in site.languages %}
+    {% if page.ref and page.collection == 'posts' %}
+      {% assign target = site.posts | where: "ref", page.ref | where: "lang", lang | first %}
+      {% assign href = target.url %}
+    {% else %}
+      {% assign href = page.url %}
+      {% unless lang == site.default_lang %}{% assign href = '/' | append: lang | append: page.url %}{% endunless %}
+    {% endif %}
+    <a class="lang-opt {% if lang == page.lang %}active{% endif %}" href="{{ href | relative_url }}">{{ lang | replace: 'pt-br','PT' | replace: 'en','EN' | upcase }}</a>
+  {% endfor %}
+</div>
+```
+
+### `<html lang>` + hreflang (SEO)
+```liquid
+<html lang="{{ page.lang | default: site.default_lang | replace: 'pt-br','pt-BR' }}" data-theme="dark">
+```
+No `<head>`, para cada idioma:
+```liquid
+{% for lang in site.languages %}
+  <link rel="alternate" hreflang="{{ lang }}" href="{{ ... }}" />
+{% endfor %}
+```
+
+### Datas por locale
+O protótipo reformata datas via JS (`toPt()`: "April 14, 2026" → "14 de abril de 2026", "min read" → "min de leitura"). No Jekyll, prefira formatar no build conforme `page.lang`:
+```liquid
+{% assign t = site.data.i18n[page.lang] %}
+{% if page.lang == 'pt-br' %}
+  {{ post.date | date: '%-d de ' }}{{ t.months[post.date | date: '%-m'] }}{{ post.date | date: ' de %Y' }}
+{% else %}
+  {{ post.date | date: '%B %-d, %Y' }}
+{% endif %}
+```
+(defina `months:` no data file PT, indexado por número do mês). Para o read-time, anexe `t.read_time_suffix`.
+
+### Decisões de conteúdo
+| Questão | Recomendação |
+|---|---|
+| Post existe só num idioma | Polyglot faz fallback pro default; mostre badge "Only in English" ou esconda do feed do outro idioma |
+| URL default | EN sem prefixo (`/`) p/ alcance internacional; ou inverta se público é BR |
+| Tags/categorias | slug EN estável (CSS); label traduzido via data file |
+| Strings de UI | 100% nos data files — zero string hard-coded em template |
+
+### O que muda no design já entregue
+1. **Nav:** o `.lang-toggle` (EN/PT) já existe no protótipo e CSS — no Jekyll vira links com `page.ref`.
+2. **Todas as strings de UI** migram para `_data/i18n/{en,pt-br}.yml`.
+3. **`.tag` classes** continuam com slug EN; só o label muda.
+4. **Posts** duplicados em `_posts/en/` e `_posts/pt-br/` com `ref` compartilhado.
+5. **CSS:** nenhuma mudança estrutural — `.lang-toggle`/`.lang-opt` já estão no `styles.css`.
+
+---
+
 ## Files bundled
-- `Engineering Notes.html` — protótipo completo com 4 páginas (Home, Post, Archive, About) como rotas hash-based. No Jekyll cada uma vira layout/page separado.
+- `Engineering Notes.html` — protótipo completo com 4 páginas (Home, Post, Archive, About) como rotas hash-based + toggle de idioma EN/PT (via atributos `data-pt` + JS). No Jekyll cada página vira layout/page separado e o i18n vira data files + polyglot.
 - `styles.css` — todos os tokens e classes. Copiar para `_sass/` dividido em módulos.
 
 ## Implementation checklist (sugerida para Claude Code)
@@ -221,9 +381,13 @@ Nenhum state complexo. Apenas:
 5. [ ] Criar includes granulares (`featured-card`, `post-card`, `article-row`, `tag`, etc.)
 6. [ ] Reescrever `index.html` usando os novos includes + iteração sobre `site.posts`
 7. [ ] Adicionar `read_time` via plugin ou filtro Liquid (`page.content | number_of_words | divided_by: 200`)
-8. [ ] Testar com `bundle exec jekyll serve` localmente
-9. [ ] Verificar dark/light toggle persiste e não há FOUC
-10. [ ] Publicar em branch `gh-pages`
+8. [ ] **i18n:** adicionar `languages`/`default_lang` no `_config.yml`, criar `_data/i18n/{en,pt-br}.yml`, mover strings de UI para lá
+9. [ ] **i18n:** estruturar `_posts/en/` + `_posts/pt-br/` com `ref` compartilhado; language toggle via `page.ref`
+10. [ ] **i18n:** configurar GitHub Actions (`jekyll build` + deploy) para liberar `jekyll-polyglot`
+11. [ ] Adicionar `read_time` via filtro Liquid (`page.content | number_of_words | divided_by: 200`)
+12. [ ] Testar com `bundle exec jekyll serve` localmente (incl. `/` e `/pt-br/`)
+13. [ ] Verificar dark/light toggle persiste e não há FOUC; `<html lang>` + hreflang corretos
+14. [ ] Publicar (via Actions na branch de deploy)
 
 ## Notas finais
 - O JS no protótipo roteia 4 páginas via hash num único arquivo — **não replicar isso no Jekyll**. Jekyll já gera páginas reais; cada "rota" do protótipo vira uma página/layout.

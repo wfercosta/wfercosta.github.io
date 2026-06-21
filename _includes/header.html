@@ -6,15 +6,17 @@
         <span class="brand-name">Engineering <em>Notes</em></span>
       </a>
 
+      {% assign lang = site.active_lang | default: site.default_lang %}
+      {% assign t = site.data.i18n[lang] %}
       <nav class="nav-links">
-        {% for item in site.navigation %}
-          <a href="{{ site.baseurl }}{{ item.url }}"{% if page.url == item.url %} class="active"{% endif %}>{{ item.text }}</a>
-        {% endfor %}
+        <a href="{{ site.baseurl }}/tags"{% if page.url contains '/tags' %} class="active"{% endif %}>{{ t.nav.archive }}</a>
+        <a href="{{ site.baseurl }}/about"{% if page.url contains '/about' %} class="active"{% endif %}>{{ t.nav.about }}</a>
       </nav>
 
       <div class="nav-actions">
+        {% include lang-toggle.html %}
         {% include theme-toggle.html %}
-        <a href="{{ site.baseurl }}/feed.xml" class="btn-ghost" title="RSS Feed">RSS ↗</a>
+        <a href="{{ site.baseurl }}/feed.xml" class="btn-ghost" title="{{ t.footer.rss }}">{{ t.nav.rss }} ↗</a>
       </div>
     </div>
   </div>

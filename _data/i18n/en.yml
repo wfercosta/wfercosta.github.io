@@ -1,0 +1,116 @@
+# UI strings — English (default)
+nav:
+  archive: "Archive"
+  about: "About"
+  rss: "RSS"
+
+hero:
+  kicker: "— Blog Articles —"
+  title_1: "Engineering"
+  title_2: "Notes"
+  sub: "Notes on software engineering, architecture, data platforms and the craft of building systems that scale."
+
+sections:
+  eng_arch: "Engineering & Architecture"
+  latest: "Latest Articles"
+  recent_notes: "Recent Notes"
+  all_categories: "All Categories"
+  view_all: "View all ↗"
+
+panel:
+  title_1: "All"
+  title_2: "Articles"
+  sub: "Browse the complete archive of engineering notes, articles and deep-dives."
+  view_all: "View all ↗"
+
+features:
+  rss_title: "RSS Feed"
+  rss_link: "Subscribe via RSS ↗"
+  no_news_title: "No newsletter"
+  no_news_sub: "No spam, ever."
+  oss_title: "Open Source"
+  oss_link: "View on GitHub ↗"
+
+footer:
+  site: "Site"
+  topics: "Topics"
+  elsewhere: "Elsewhere"
+  home: "Home"
+  archive: "Archive"
+  about: "About"
+  rss: "RSS Feed"
+  rights: "All rights reserved."
+  built_with: "Built with Jekyll · Open Source"
+
+post:
+  read_time: "min read"
+  share: "Share"
+  read_next: "Read Next"
+  author_role: "Software Engineer"
+
+archive:
+  kicker: "— Archive —"
+  title_1: "Everything,"
+  title_2: "sorted"
+  all: "All"
+  read_unit: "min"
+
+about:
+  kicker: "— About —"
+  title_1: "Hi, I'm"
+  title_2: "Wander"
+  currently: "Currently"
+  stats:
+    notes: "Notes"
+    experience: "Experience"
+    topics: "Topics"
+    based_in: "Based in"
+    based_value: "BR"
+  now:
+    - "Building distributed systems & platform engineering"
+    - "Writing about Software Architecture & Data"
+    - "Exploring AI/ML applications in engineering"
+  body:
+    - "Software engineer, technology enthusiast and non-stop reader based in Brazil. I've been building systems for over %YEARS% years — from monoliths to microservices, from bare metal to cloud-native."
+    - "I write about the things I find interesting: distributed systems, platform engineering, data architecture, and the intersection of software and scale. Not a tutorial blog — more like a notebook where I work through ideas in public."
+    - "When I'm not writing code or writing about code, I'm probably reading, playing sports, or chasing the next interesting problem."
+
+units:
+  posts: "posts"
+
+months:
+  "1": "January"
+  "2": "February"
+  "3": "March"
+  "4": "April"
+  "5": "May"
+  "6": "June"
+  "7": "July"
+  "8": "August"
+  "9": "September"
+  "10": "October"
+  "11": "November"
+  "12": "December"
+
+months_short:
+  "1": "Jan"
+  "2": "Feb"
+  "3": "Mar"
+  "4": "Apr"
+  "5": "May"
+  "6": "Jun"
+  "7": "Jul"
+  "8": "Aug"
+  "9": "Sep"
+  "10": "Oct"
+  "11": "Nov"
+  "12": "Dec"
+
+# Tag labels keyed by stable English slug (CSS colour classes use the slug)
+tags:
+  engineering: "Engineering"
+  architecture: "Architecture"
+  data: "Data Platform"
+  devops: "DevOps"
+  ml: "AI & ML"
+  updates: "Updates"

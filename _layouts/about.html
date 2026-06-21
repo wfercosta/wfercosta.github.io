@@ -2,6 +2,9 @@
 layout: default
 ---
 
+{% assign lang = site.active_lang | default: site.default_lang %}
+{% assign t = site.data.i18n[lang] %}
+
 <div class="about-hero">
   <div class="container">
     <div class="about-avatar">
@@ -11,49 +14,50 @@ layout: default
         W
       {% endif %}
     </div>
-    <span class="hero-kicker">— About —</span>
-    <h1 class="hero-title">Hi, I'm <em>Wander</em></h1>
+    <span class="hero-kicker">{{ t.about.kicker }}</span>
+    <h1 class="hero-title">{{ t.about.title_1 }} <em>{{ t.about.title_2 }}</em></h1>
   </div>
 </div>
 
+{% assign build_year  = site.time | date: "%Y" | plus: 0 %}
+{% assign build_month = site.time | date: "%-m" | plus: 0 %}
+{% assign career_years = build_year | minus: 2003 %}
+{% if build_month < 3 %}{% assign career_years = career_years | minus: 1 %}{% endif %}
+{% assign topics_count = site.tags | size %}
+{% assign lang_posts = site.posts | where: "lang", lang %}
+
 <div class="container-narrow">
   <div class="about-body">
-    {{ content }}
+    {% for para in t.about.body %}
+      <p>{{ para | replace: '%YEARS%', career_years }}</p>
+    {% endfor %}
   </div>
-
-  {% assign build_year  = site.time | date: "%Y" | plus: 0 %}
-  {% assign build_month = site.time | date: "%-m" | plus: 0 %}
-  {% assign career_years = build_year | minus: 2003 %}
-  {% if build_month < 3 %}
-    {% assign career_years = career_years | minus: 1 %}
-  {% endif %}
-  {% assign topics_count = site.tags | size %}
 
   <div class="about-stats">
     <div class="about-stat">
-      <div class="n">{{ site.posts | size }}<em>+</em></div>
-      <div class="l">Notes</div>
+      <div class="n">{{ lang_posts | size }}<em>+</em></div>
+      <div class="l">{{ t.about.stats.notes }}</div>
     </div>
     <div class="about-stat">
       <div class="n">{{ career_years }}<em>y</em></div>
-      <div class="l">Experience</div>
+      <div class="l">{{ t.about.stats.experience }}</div>
     </div>
     <div class="about-stat">
       <div class="n">{{ topics_count }}<em>+</em></div>
-      <div class="l">Topics</div>
+      <div class="l">{{ t.about.stats.topics }}</div>
     </div>
     <div class="about-stat">
-      <div class="n">BR</div>
-      <div class="l">Based in</div>
+      <div class="n">{{ t.about.stats.based_value }}</div>
+      <div class="l">{{ t.about.stats.based_in }}</div>
     </div>
   </div>
 
   <div class="about-now">
-    <h3>Currently</h3>
+    <h3>{{ t.about.currently }}</h3>
     <ul>
-      <li>Building distributed systems &amp; platform engineering</li>
-      <li>Writing about Software Architecture &amp; Data</li>
-      <li>Exploring AI/ML applications in engineering</li>
+      {% for item in t.about.now %}
+        <li>{{ item }}</li>
+      {% endfor %}
     </ul>
   </div>
 </div>

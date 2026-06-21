@@ -3,25 +3,33 @@ layout: default
 title: Home
 ---
 
+{% assign lang = site.active_lang | default: site.default_lang %}
+{% assign t = site.data.i18n[lang] %}
+
+{% comment %} Scope all content to the current language {% endcomment %}
+{% assign lang_posts = site.posts | where: "lang", lang %}
+
+{% comment %} Collect tags present in this language {% endcomment %}
+{% capture lang_tags %}{% for post in lang_posts %}{% for tag in post.tags %}{{ tag }}{% unless forloop.last %},{% endunless %}{% endfor %}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+{% assign sortedTags = lang_tags | split: ',' | uniq | sort %}
+
 <!-- Hero -->
 <section class="hero">
   <div class="container">
     <div class="hero-inner">
-      <span class="hero-kicker">— Blog Articles —</span>
-      <h1 class="hero-title">Engineering <em>Notes</em></h1>
-      <p class="hero-sub">{{ site.description | strip_html | truncate: 120 }}</p>
+      <span class="hero-kicker">{{ t.hero.kicker }}</span>
+      <h1 class="hero-title">{{ t.hero.title_1 }} <em>{{ t.hero.title_2 }}</em></h1>
+      <p class="hero-sub">{{ t.hero.sub }}</p>
     </div>
 
     <!-- Categories strip -->
-    {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
-    {% assign sortedTags = site_tags | split:',' | sort %}
     <div class="categories-wrap">
       <button class="cat-nav prev" id="cat-prev" aria-label="Scroll left">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
       <div class="categories" id="categories-strip">
         {% for tag in sortedTags %}
-          {% assign tag_count = site.tags[tag] | size %}
+          {% assign tag_count = lang_posts | where_exp: "p", "p.tags contains tag" | size %}
           {% include category-card.html name=tag count=tag_count %}
         {% endfor %}
       </div>
@@ -34,74 +42,62 @@ title: Home
 
 <!-- Featured + Recent split -->
 <div class="container">
-  {% assign featured_posts = site.posts | where: "featured", true %}
-  {% assign all_posts = site.posts %}
+  {% assign featured_posts = lang_posts | where: "featured", true %}
 
   {% if featured_posts.size > 0 %}
-  <div class="split-grid">
     {% assign hero_post = featured_posts | first %}
+  {% else %}
+    {% assign hero_post = lang_posts | first %}
+  {% endif %}
+
+  <div class="split-grid">
     <div>
       {% include featured-card.html post=hero_post idx=1 %}
     </div>
     <div class="article-list">
-      {% assign recent_posts = site.posts | where_exp: "p", "p.url != hero_post.url" %}
+      {% assign recent_posts = lang_posts | where_exp: "p", "p.url != hero_post.url" %}
       {% for post in recent_posts limit:4 %}
         {% include article-row.html post=post %}
       {% endfor %}
     </div>
   </div>
-  {% else %}
-  <div class="split-grid">
-    {% assign hero_post = all_posts | first %}
-    <div>
-      {% include featured-card.html post=hero_post idx=1 %}
-    </div>
-    <div class="article-list">
-      {% for post in all_posts limit:4 offset:1 %}
-        {% include article-row.html post=post %}
-      {% endfor %}
-    </div>
-  </div>
-  {% endif %}
 
   <!-- Engineering & Architecture section -->
-  {% assign eng_posts = site.posts | where_exp: "p", "p.tags contains 'Software Engineering' or p.tags contains 'System Design' or p.tags contains 'Architecture'" %}
+  {% assign eng_posts = lang_posts | where_exp: "p", "p.tags contains 'engineering' or p.tags contains 'architecture'" %}
   {% if eng_posts.size > 0 %}
   <div class="sec-head">
     <h2 class="sec-title">
       <span class="dot" style="color: var(--tag-basics);"></span>
-      Engineering &amp; Architecture
+      {{ t.sections.eng_arch }}
     </h2>
-    <a href="{{ site.baseurl }}/tags" class="sec-read-all">View all ↗</a>
+    <a href="{{ site.baseurl }}/tags" class="sec-read-all">{{ t.sections.view_all }}</a>
   </div>
   <div class="card-grid">
     {% for post in eng_posts limit:3 %}
       {% include post-card.html post=post %}
     {% endfor %}
   </div>
-  {% endif %}
-
-  <!-- All recent posts section (if not enough category posts) -->
-  {% if eng_posts.size == 0 %}
+  {% else %}
+  <!-- Latest articles fallback -->
   <div class="sec-head">
     <h2 class="sec-title">
       <span class="dot" style="color: var(--tag-basics);"></span>
-      Latest Articles
+      {{ t.sections.latest }}
     </h2>
-    <a href="{{ site.baseurl }}/tags" class="sec-read-all">View all ↗</a>
+    <a href="{{ site.baseurl }}/tags" class="sec-read-all">{{ t.sections.view_all }}</a>
   </div>
   <div class="card-grid">
-    {% for post in site.posts limit:3 %}
+    {% for post in lang_posts limit:3 %}
       {% include post-card.html post=post %}
     {% endfor %}
   </div>
   {% endif %}
 
-  <!-- Changelog panel -->
+  <!-- Recent notes panel -->
   <div class="sec-head">
     <h2 class="sec-title">
       <span class="dot" style="color: var(--accent);"></span>
-      Recent Notes
+      {{ t.sections.recent_notes }}
     </h2>
   </div>
   <div class="panel">
@@ -111,12 +107,12 @@ title: Home
         <div></div>
         <div></div>
       </div>
-      <div class="panel-title">All<br><em style="font-style:italic;color:var(--accent)">Articles</em></div>
-      <p class="panel-sub">Browse the complete archive of engineering notes, articles and deep-dives.</p>
-      <a href="{{ site.baseurl }}/tags" class="panel-btn">View all ↗</a>
+      <div class="panel-title">{{ t.panel.title_1 }}<br><em style="font-style:italic;color:var(--accent)">{{ t.panel.title_2 }}</em></div>
+      <p class="panel-sub">{{ t.panel.sub }}</p>
+      <a href="{{ site.baseurl }}/tags" class="panel-btn">{{ t.panel.view_all }}</a>
     </div>
     <div class="timeline">
-      {% for post in site.posts limit:4 %}
+      {% for post in lang_posts limit:4 %}
       <div class="timeline-row">
         <div class="timeline-num">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</div>
         <div class="timeline-body">
@@ -145,11 +141,11 @@ title: Home
 
   <!-- All categories catalog -->
   <div class="sec-head">
-    <h2 class="sec-title">All Categories</h2>
+    <h2 class="sec-title">{{ t.sections.all_categories }}</h2>
   </div>
   <div class="catalog-grid">
     {% for tag in sortedTags %}
-      {% assign tag_count = site.tags[tag] | size %}
+      {% assign tag_count = lang_posts | where_exp: "p", "p.tags contains tag" | size %}
       {% assign tag_lower = tag | downcase %}
       {% assign dot_color = "var(--tag-basics)" %}
       {% if tag_lower contains "architecture" %}{% assign dot_color = "var(--tag-health)" %}
@@ -160,7 +156,7 @@ title: Home
       {% endif %}
       <a href="{{ site.baseurl }}/tags#{{ tag | cgi_escape }}" class="catalog-item">
         <span style="width:8px;height:8px;border-radius:50%;background:{{ dot_color }};flex-shrink:0;"></span>
-        {{ tag }}
+        {{ t.tags[tag_lower] | default: tag }}
         <span class="count">{{ tag_count }}</span>
       </a>
     {% endfor %}
@@ -172,19 +168,19 @@ title: Home
       <div class="feature-icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
       </div>
-      <div><b>RSS Feed</b><br><a href="{{ site.baseurl }}/feed.xml">Subscribe via RSS ↗</a></div>
+      <div><b>{{ t.features.rss_title }}</b><br><a href="{{ site.baseurl }}/feed.xml">{{ t.features.rss_link }}</a></div>
     </div>
     <div class="feature">
       <div class="feature-icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       </div>
-      <div><b>No newsletter</b><br><span style="color:var(--fg-mute);font-size:12px;">No spam, ever.</span></div>
+      <div><b>{{ t.features.no_news_title }}</b><br><span style="color:var(--fg-mute);font-size:12px;">{{ t.features.no_news_sub }}</span></div>
     </div>
     <div class="feature">
       <div class="feature-icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
       </div>
-      <div><b>Open Source</b><br><a href="https://github.com/{{ site.github }}" target="_blank" rel="noopener">View on GitHub ↗</a></div>
+      <div><b>{{ t.features.oss_title }}</b><br><a href="https://github.com/{{ site.github }}" target="_blank" rel="noopener">{{ t.features.oss_link }}</a></div>
     </div>
   </div>
 </div>

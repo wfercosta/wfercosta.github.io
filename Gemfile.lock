@@ -48,6 +48,8 @@ GEM
       terminal-table (>= 1.8, < 4.0)
       webrick (~> 1.7)
     jekyll-paginate (1.1.0)
+    jekyll-polyglot (1.13.0)
+      jekyll (>= 4.0, >= 3.0)
     jekyll-sass-converter (3.1.0)
       sass-embedded (~> 1.75)
     jekyll-seo-tag (2.8.0)
@@ -98,6 +100,7 @@ PLATFORMS
 DEPENDENCIES
   jekyll (~> 4.3)
   jekyll-paginate
+  jekyll-polyglot
   jekyll-seo-tag
   jekyll-sitemap
   webrick (>= 1.8)

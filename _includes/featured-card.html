@@ -1,5 +1,7 @@
 {% assign post = include.post %}
 {% assign idx = include.idx | default: 1 %}
+{% assign lang = site.active_lang | default: site.default_lang %}
+{% assign t = site.data.i18n[lang] %}
 <a href="{{ site.baseurl }}{{ post.url }}" class="featured" style="display:block;">
   <div class="featured-media">
     {% if post.featured_image %}
@@ -25,9 +27,9 @@
     <div class="featured-title">{{ post.title }}</div>
     <div class="featured-excerpt">{{ post.excerpt | strip_html | truncate: 140 }}</div>
     <div class="featured-meta">
-      {{ post.date | date: "%b %-d, %Y" }}
+      {% include i18n-date.html date=post.date %}
       <span class="dot">·</span>
-      {{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min read
+      {{ post.content | number_of_words | divided_by: 200 | plus: 1 }} {{ t.post.read_time }}
     </div>
   </div>
 </a>

@@ -25,17 +25,21 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
       <span class="brand-name">wfercosta<em>/notes</em></span>
     </a>
     <div class="nav-links">
-      <a href="#home" data-nav class="active">Articles</a>
-      <a href="#archive" data-nav>Archive</a>
-      <a href="#about" data-nav>About</a>
+      <a href="#home" data-nav class="active" data-pt="Artigos">Articles</a>
+      <a href="#archive" data-nav data-pt="Arquivo">Archive</a>
+      <a href="#about" data-nav data-pt="Sobre">About</a>
       <a href="https://github.com/wfercosta" target="_blank">GitHub <span style="font-variant-emoji:text">↗</span></a>
     </div>
     <div class="nav-actions">
+      <div class="lang-toggle" id="langToggle" role="group" aria-label="Language">
+        <button class="lang-opt active" data-lang="en">EN</button>
+        <button class="lang-opt" data-lang="pt">PT</button>
+      </div>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       </button>
-      <button class="btn-primary">Subscribe</button>
+      <button class="btn-primary" data-pt="Inscrever-se">Subscribe</button>
     </div>
   </div>
 </nav>
@@ -44,9 +48,9 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
 <main id="page-home" class="page">
   <section class="hero">
     <div class="container hero-inner">
-      <div class="hero-kicker">— Blog Articles —</div>
-      <h1 class="hero-title">Engineering <em>Notes</em></h1>
-      <p class="hero-sub">Writing on software engineering, architecture, data platforms, DevOps and the quiet craft of shipping systems that don't wake you up at 3am.</p>
+      <div class="hero-kicker" data-pt="— Artigos do Blog —">— Blog Articles —</div>
+      <h1 class="hero-title" data-pt="Notas de <em>Engenharia</em>">Engineering <em>Notes</em></h1>
+      <p class="hero-sub" data-pt="Textos sobre engenharia de software, arquitetura, plataformas de dados, DevOps e a arte silenciosa de entregar sistemas que não te acordam às 3 da manhã.">Writing on software engineering, architecture, data platforms, DevOps and the quiet craft of shipping systems that don't wake you up at 3am.</p>
     </div>
 
     <div class="container categories-wrap">
@@ -54,31 +58,31 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
       <div class="categories" id="categories">
         <a class="cat-card" href="#archive">
           <div class="cat-icon" style="background:rgba(96,165,250,0.14);color:var(--tag-basics)">◈</div>
-          <div class="cat-meta"><span class="cat-name">Engineering</span><span class="cat-count">24 articles</span></div>
+          <div class="cat-meta"><span class="cat-name" data-pt="Engenharia">Engineering</span><span class="cat-count" data-pt="24 artigos">24 articles</span></div>
         </a>
         <a class="cat-card" href="#archive">
           <div class="cat-icon" style="background:rgba(248,113,113,0.14);color:var(--tag-health)">▲</div>
-          <div class="cat-meta"><span class="cat-name">Architecture</span><span class="cat-count">18 articles</span></div>
+          <div class="cat-meta"><span class="cat-name" data-pt="Arquitetura">Architecture</span><span class="cat-count" data-pt="18 artigos">18 articles</span></div>
         </a>
         <a class="cat-card" href="#archive">
           <div class="cat-icon" style="background:rgba(192,132,252,0.14);color:var(--tag-remedies)">◉</div>
-          <div class="cat-meta"><span class="cat-name">Data Platform</span><span class="cat-count">12 articles</span></div>
+          <div class="cat-meta"><span class="cat-name" data-pt="Plataforma de Dados">Data Platform</span><span class="cat-count" data-pt="12 artigos">12 articles</span></div>
         </a>
         <a class="cat-card" href="#archive">
           <div class="cat-icon" style="background:rgba(251,146,60,0.14);color:var(--tag-resources)">⟳</div>
-          <div class="cat-meta"><span class="cat-name">DevOps</span><span class="cat-count">15 articles</span></div>
+          <div class="cat-meta"><span class="cat-name">DevOps</span><span class="cat-count" data-pt="15 artigos">15 articles</span></div>
         </a>
         <a class="cat-card" href="#archive">
           <div class="cat-icon" style="background:rgba(52,211,153,0.14);color:var(--tag-tech)">✦</div>
-          <div class="cat-meta"><span class="cat-name">AI &amp; ML</span><span class="cat-count">9 articles</span></div>
+          <div class="cat-meta"><span class="cat-name" data-pt="IA &amp; ML">AI &amp; ML</span><span class="cat-count" data-pt="9 artigos">9 articles</span></div>
         </a>
         <a class="cat-card" href="#archive">
           <div class="cat-icon" style="background:rgba(251,191,36,0.14);color:var(--tag-updates)">◐</div>
-          <div class="cat-meta"><span class="cat-name">Updates</span><span class="cat-count">6 articles</span></div>
+          <div class="cat-meta"><span class="cat-name" data-pt="Novidades">Updates</span><span class="cat-count" data-pt="6 artigos">6 articles</span></div>
         </a>
         <a class="cat-card" href="#archive">
           <div class="cat-icon" style="background:rgba(167,139,250,0.14);color:var(--accent)">❖</div>
-          <div class="cat-meta"><span class="cat-name">Process</span><span class="cat-count">8 articles</span></div>
+          <div class="cat-meta"><span class="cat-name" data-pt="Processo">Process</span><span class="cat-count" data-pt="8 artigos">8 articles</span></div>
         </a>
       </div>
       <button class="cat-nav next" id="catNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
@@ -93,9 +97,9 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
           <span class="featured-badge">#42 · Featured</span>
         </div>
         <div class="featured-body">
-          <span class="tag architecture">Architecture</span>
-          <h2 class="featured-title">Designing process platforms for long-running business workflows</h2>
-          <p class="featured-excerpt">Notes from a year rebuilding a proposal-to-contract platform: why state machines outlived microservices, how idempotency keys became the real architecture, and the tradeoffs nobody writes about.</p>
+          <span class="tag architecture" data-pt="Arquitetura">Architecture</span>
+          <h2 class="featured-title" data-pt="Projetando plataformas de processo para fluxos de longa duração">Designing process platforms for long-running business workflows</h2>
+          <p class="featured-excerpt" data-pt="Notas de um ano reconstruindo uma plataforma de proposta-a-contrato: por que máquinas de estado sobreviveram aos microserviços, como chaves de idempotência viraram a verdadeira arquitetura, e os trade-offs que ninguém comenta.">Notes from a year rebuilding a proposal-to-contract platform: why state machines outlived microservices, how idempotency keys became the real architecture, and the tradeoffs nobody writes about.</p>
           <div class="featured-meta">April 14, 2026<span class="dot">·</span>18 min read</div>
         </div>
       </article>
@@ -103,16 +107,16 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
         <article class="article-row" onclick="goto('#post')">
           <div class="thumb"><div class="placeholder p-engineering">code</div></div>
           <div class="body">
-            <span class="tag engineering">Engineering</span>
-            <div class="title">The shape of a good abstraction, and when to break it</div>
+            <span class="tag engineering" data-pt="Engenharia">Engineering</span>
+            <div class="title" data-pt="A forma de uma boa abstração — e quando quebrá-la">The shape of a good abstraction, and when to break it</div>
             <div class="meta">Apr 08 · 9 min read</div>
           </div>
         </article>
         <article class="article-row" onclick="goto('#post')">
           <div class="thumb"><div class="placeholder p-ml">ml</div></div>
           <div class="body">
-            <span class="tag ml">AI &amp; ML</span>
-            <div class="title">Classifier resolvers: building agents that know when to stop</div>
+            <span class="tag ml" data-pt="IA &amp; ML">AI &amp; ML</span>
+            <div class="title" data-pt="Resolvers classificadores: construindo agentes que sabem a hora de parar">Classifier resolvers: building agents that know when to stop</div>
             <div class="meta">Mar 28 · 12 min read</div>
           </div>
         </article>
@@ -120,15 +124,15 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
           <div class="thumb"><div class="placeholder p-devops">k8s</div></div>
           <div class="body">
             <span class="tag devops">DevOps</span>
-            <div class="title">Terraform modules that scale without becoming a religion</div>
+            <div class="title" data-pt="Módulos Terraform que escalam sem virar religião">Terraform modules that scale without becoming a religion</div>
             <div class="meta">Mar 15 · 11 min read</div>
           </div>
         </article>
         <article class="article-row" onclick="goto('#post')">
           <div class="thumb"><div class="placeholder p-data">sql</div></div>
           <div class="body">
-            <span class="tag data">Data Platform</span>
-            <div class="title">Change data capture, debezium, and the illusion of real-time</div>
+            <span class="tag data" data-pt="Plataforma de Dados">Data Platform</span>
+            <div class="title" data-pt="Change data capture, Debezium e a ilusão do tempo real">Change data capture, debezium, and the illusion of real-time</div>
             <div class="meta">Feb 29 · 14 min read</div>
           </div>
         </article>
@@ -137,34 +141,34 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
 
     <!-- Engineering & Architecture -->
     <div class="sec-head">
-      <h3 class="sec-title"><span class="dot" style="color:var(--tag-basics)"></span>Engineering &amp; Architecture</h3>
-      <a class="sec-read-all" href="#archive">Read all →</a>
+      <h3 class="sec-title" data-pt="<span class=&quot;dot&quot; style=&quot;color:var(--tag-basics)&quot;></span>Engenharia &amp; Arquitetura"><span class="dot" style="color:var(--tag-basics)"></span>Engineering &amp; Architecture</h3>
+      <a class="sec-read-all" href="#archive" data-pt="Ver todos →">Read all →</a>
     </div>
     <div class="card-grid">
       <article class="card" onclick="goto('#post')">
         <div class="card-media"><div class="placeholder p-engineering">hexagonal</div></div>
         <div class="card-body">
-          <span class="tag engineering">Engineering</span>
-          <h4 class="card-title">Ports and adapters: revisiting hexagonal architecture in 2026</h4>
-          <p class="card-excerpt">A decade after Alistair's original paper, the pattern is everywhere and misunderstood everywhere. What still holds up, what doesn't.</p>
+          <span class="tag engineering" data-pt="Engenharia">Engineering</span>
+          <h4 class="card-title" data-pt="Ports and adapters: revisitando a arquitetura hexagonal em 2026">Ports and adapters: revisiting hexagonal architecture in 2026</h4>
+          <p class="card-excerpt" data-pt="Uma década após o artigo original de Alistair, o padrão está em todo lugar e é mal compreendido em todo lugar. O que ainda se sustenta, o que não.">A decade after Alistair's original paper, the pattern is everywhere and misunderstood everywhere. What still holds up, what doesn't.</p>
           <div class="card-meta">Apr 02 · 10 min read</div>
         </div>
       </article>
       <article class="card" onclick="goto('#post')">
         <div class="card-media"><div class="placeholder p-architecture">event</div></div>
         <div class="card-body">
-          <span class="tag architecture">Architecture</span>
-          <h4 class="card-title">Event-driven, eventually confusing</h4>
-          <p class="card-excerpt">The real cost of choosing events over synchronous calls, and the three patterns that keep the wheels on.</p>
+          <span class="tag architecture" data-pt="Arquitetura">Architecture</span>
+          <h4 class="card-title" data-pt="Orientado a eventos, eventualmente confuso">Event-driven, eventually confusing</h4>
+          <p class="card-excerpt" data-pt="O custo real de escolher eventos no lugar de chamadas síncronas, e os três padrões que seguram as pontas.">The real cost of choosing events over synchronous calls, and the three patterns that keep the wheels on.</p>
           <div class="card-meta">Mar 22 · 13 min read</div>
         </div>
       </article>
       <article class="card" onclick="goto('#post')">
         <div class="card-media"><div class="placeholder p-engineering">tests</div></div>
         <div class="card-body">
-          <span class="tag engineering">Engineering</span>
-          <h4 class="card-title">Testing the seams, not the code</h4>
-          <p class="card-excerpt">What I learned from deleting 40% of a test suite without losing confidence — and the heuristic I use now.</p>
+          <span class="tag engineering" data-pt="Engenharia">Engineering</span>
+          <h4 class="card-title" data-pt="Testando as costuras, não o código">Testing the seams, not the code</h4>
+          <p class="card-excerpt" data-pt="O que aprendi apagando 40% de uma suíte de testes sem perder confiança — e a heurística que uso agora.">What I learned from deleting 40% of a test suite without losing confidence — and the heuristic I use now.</p>
           <div class="card-meta">Mar 10 · 7 min read</div>
         </div>
       </article>
@@ -175,15 +179,15 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
       <div class="panel-left">
         <div class="panel-avatars"><span></span><span></span></div>
         <h3 class="panel-title">Changelog</h3>
-        <p class="panel-sub">Small updates, new hires on the team, tools I'm trying, and occasionally a rewrite I regret. Dropped roughly every two weeks.</p>
-        <button class="panel-btn">View all</button>
+        <p class="panel-sub" data-pt="Pequenas novidades, ferramentas que estou testando e, vez ou outra, uma reescrita da qual me arrependo. Sai mais ou menos a cada duas semanas.">Small updates, new hires on the team, tools I'm trying, and occasionally a rewrite I regret. Dropped roughly every two weeks.</p>
+        <button class="panel-btn" data-pt="Ver tudo">View all</button>
       </div>
       <div class="timeline">
         <div class="timeline-row">
           <div class="timeline-num">#21</div>
           <div class="timeline-body">
-            <span class="tag updates">Updates</span>
-            <div class="title">Moved the notes site to a new dark theme</div>
+            <span class="tag updates" data-pt="Novidades">Updates</span>
+            <div class="title" data-pt="Migrei o site de notas para um novo tema escuro">Moved the notes site to a new dark theme</div>
             <div class="meta">Apr 18, 2026 · 4 min read</div>
           </div>
           <div class="timeline-thumb"><div class="placeholder p-updates">v21</div></div>
@@ -191,8 +195,8 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
         <div class="timeline-row">
           <div class="timeline-num">#20</div>
           <div class="timeline-body">
-            <span class="tag updates">Updates</span>
-            <div class="title">New essay series: building a process platform</div>
+            <span class="tag updates" data-pt="Novidades">Updates</span>
+            <div class="title" data-pt="Nova série de ensaios: construindo uma plataforma de processo">New essay series: building a process platform</div>
             <div class="meta">Apr 02, 2026 · 3 min read</div>
           </div>
           <div class="timeline-thumb"><div class="placeholder p-architecture">v20</div></div>
@@ -200,8 +204,8 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
         <div class="timeline-row">
           <div class="timeline-num">#19</div>
           <div class="timeline-body">
-            <span class="tag updates">Updates</span>
-            <div class="title">Tooling: Neovim config &amp; agent skills now open</div>
+            <span class="tag updates" data-pt="Novidades">Updates</span>
+            <div class="title" data-pt="Ferramentas: config do Neovim &amp; agent skills agora abertas">Tooling: Neovim config &amp; agent skills now open</div>
             <div class="meta">Mar 14, 2026 · 5 min read</div>
           </div>
           <div class="timeline-thumb"><div class="placeholder p-devops">v19</div></div>
@@ -209,8 +213,8 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
         <div class="timeline-row">
           <div class="timeline-num">#18</div>
           <div class="timeline-body">
-            <span class="tag updates">Updates</span>
-            <div class="title">Quarterly reading list: systems &amp; platforms</div>
+            <span class="tag updates" data-pt="Novidades">Updates</span>
+            <div class="title" data-pt="Lista de leitura trimestral: sistemas &amp; plataformas">Quarterly reading list: systems &amp; platforms</div>
             <div class="meta">Feb 28, 2026 · 2 min read</div>
           </div>
           <div class="timeline-thumb"><div class="placeholder p-ml">v18</div></div>
@@ -220,34 +224,34 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
 
     <!-- Data & AI -->
     <div class="sec-head">
-      <h3 class="sec-title"><span class="dot" style="color:var(--tag-remedies)"></span>Data &amp; AI</h3>
-      <a class="sec-read-all" href="#archive">Read all →</a>
+      <h3 class="sec-title" data-pt="<span class=&quot;dot&quot; style=&quot;color:var(--tag-remedies)&quot;></span>Dados &amp; IA"><span class="dot" style="color:var(--tag-remedies)"></span>Data &amp; AI</h3>
+      <a class="sec-read-all" href="#archive" data-pt="Ver todos →">Read all →</a>
     </div>
     <div class="card-grid">
       <article class="card" onclick="goto('#post')">
         <div class="card-media"><div class="placeholder p-data">dag</div></div>
         <div class="card-body">
-          <span class="tag data">Data Platform</span>
-          <h4 class="card-title">Your data platform is a graph problem in disguise</h4>
-          <p class="card-excerpt">Lineage, freshness, and recovery all collapse into the same question. Here's how one team modelled it.</p>
+          <span class="tag data" data-pt="Plataforma de Dados">Data Platform</span>
+          <h4 class="card-title" data-pt="Sua plataforma de dados é um problema de grafos disfarçado">Your data platform is a graph problem in disguise</h4>
+          <p class="card-excerpt" data-pt="Linhagem, frescor e recuperação convergem para a mesma pergunta. Veja como um time modelou isso.">Lineage, freshness, and recovery all collapse into the same question. Here's how one team modelled it.</p>
           <div class="card-meta">Apr 05 · 11 min read</div>
         </div>
       </article>
       <article class="card" onclick="goto('#post')">
         <div class="card-media"><div class="placeholder p-ml">rag</div></div>
         <div class="card-body">
-          <span class="tag ml">AI &amp; ML</span>
-          <h4 class="card-title">Retrieval is a product decision, not a tech one</h4>
-          <p class="card-excerpt">Why your RAG quality is bottlenecked by chunk boundaries, not model choice, and what to do about it.</p>
+          <span class="tag ml" data-pt="IA &amp; ML">AI &amp; ML</span>
+          <h4 class="card-title" data-pt="Retrieval é uma decisão de produto, não de tecnologia">Retrieval is a product decision, not a tech one</h4>
+          <p class="card-excerpt" data-pt="Por que a qualidade do seu RAG é limitada pelos limites dos chunks, não pela escolha do modelo — e o que fazer.">Why your RAG quality is bottlenecked by chunk boundaries, not model choice, and what to do about it.</p>
           <div class="card-meta">Mar 29 · 9 min read</div>
         </div>
       </article>
       <article class="card" onclick="goto('#post')">
         <div class="card-media"><div class="placeholder p-data">cdc</div></div>
         <div class="card-body">
-          <span class="tag data">Data Platform</span>
-          <h4 class="card-title">When to use CDC, when to just poll</h4>
-          <p class="card-excerpt">A decision tree built from three different migration projects — and the exact throughput at which the tradeoffs flip.</p>
+          <span class="tag data" data-pt="Plataforma de Dados">Data Platform</span>
+          <h4 class="card-title" data-pt="Quando usar CDC, quando apenas fazer polling">When to use CDC, when to just poll</h4>
+          <p class="card-excerpt" data-pt="Uma árvore de decisão construída a partir de três projetos de migração — e o throughput exato em que os trade-offs se invertem.">A decision tree built from three different migration projects — and the exact throughput at which the tradeoffs flip.</p>
           <div class="card-meta">Mar 18 · 8 min read</div>
         </div>
       </article>
@@ -255,30 +259,30 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
 
     <!-- All categories -->
     <div class="sec-head">
-      <h3 class="sec-title" style="color:var(--fg)">All Categories</h3>
+      <h3 class="sec-title" style="color:var(--fg)" data-pt="Todas as Categorias">All Categories</h3>
     </div>
     <div class="catalog-grid">
-      <a class="catalog-item" href="#archive"><span class="tag engineering"></span>Engineering<span class="count">24</span></a>
-      <a class="catalog-item" href="#archive"><span class="tag architecture"></span>Architecture<span class="count">18</span></a>
-      <a class="catalog-item" href="#archive"><span class="tag data"></span>Data Platform<span class="count">12</span></a>
-      <a class="catalog-item" href="#archive"><span class="tag devops"></span>DevOps<span class="count">15</span></a>
-      <a class="catalog-item" href="#archive"><span class="tag ml"></span>AI &amp; ML<span class="count">9</span></a>
-      <a class="catalog-item" href="#archive"><span class="tag updates"></span>Updates<span class="count">6</span></a>
+      <a class="catalog-item" href="#archive" data-pt="<span class=&quot;tag engineering&quot;></span>Engenharia<span class=&quot;count&quot;>24</span>"><span class="tag engineering"></span>Engineering<span class="count">24</span></a>
+      <a class="catalog-item" href="#archive" data-pt="<span class=&quot;tag architecture&quot;></span>Arquitetura<span class=&quot;count&quot;>18</span>"><span class="tag architecture"></span>Architecture<span class="count">18</span></a>
+      <a class="catalog-item" href="#archive" data-pt="<span class=&quot;tag data&quot;></span>Plataforma de Dados<span class=&quot;count&quot;>12</span>"><span class="tag data"></span>Data Platform<span class="count">12</span></a>
+      <a class="catalog-item" href="#archive" data-pt="<span class=&quot;tag devops&quot;></span>DevOps<span class=&quot;count&quot;>15</span>"><span class="tag devops"></span>DevOps<span class="count">15</span></a>
+      <a class="catalog-item" href="#archive" data-pt="<span class=&quot;tag ml&quot;></span>IA &amp; ML<span class=&quot;count&quot;>9</span>"><span class="tag ml"></span>AI &amp; ML<span class="count">9</span></a>
+      <a class="catalog-item" href="#archive" data-pt="<span class=&quot;tag updates&quot;></span>Novidades<span class=&quot;count&quot;>6</span>"><span class="tag updates"></span>Updates<span class="count">6</span></a>
     </div>
 
     <!-- Features bar -->
     <div class="features-bar">
       <div class="feature">
         <div class="feature-icon">◇</div>
-        <div><b>RSS feed</b><a href="#">Subscribe via feed.xml</a></div>
+        <div><b data-pt="Feed RSS">RSS feed</b><a href="#" data-pt="Assine via feed.xml">Subscribe via feed.xml</a></div>
       </div>
       <div class="feature">
         <div class="feature-icon">✉</div>
-        <div><b>No newsletter</b><div class="mono" style="font-size:11px;color:var(--fg-mute);margin-top:2px;letter-spacing:.08em">just notes, in your reader</div></div>
+        <div><b data-pt="Sem newsletter">No newsletter</b><div class="mono" style="font-size:11px;color:var(--fg-mute);margin-top:2px;letter-spacing:.08em" data-pt="só notas, no seu leitor">just notes, in your reader</div></div>
       </div>
       <div class="feature">
         <div class="feature-icon">✦</div>
-        <div><b>Open source</b><a href="https://github.com/wfercosta/wfercosta.github.io" target="_blank">wfercosta/wfercosta.github.io</a></div>
+        <div><b data-pt="Código aberto">Open source</b><a href="https://github.com/wfercosta/wfercosta.github.io" target="_blank">wfercosta/wfercosta.github.io</a></div>
       </div>
     </div>
   </section>
@@ -289,17 +293,17 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
   <section class="post-hero">
     <div class="container">
       <div class="post-meta-top">
-        <span class="tag architecture">Architecture</span>
+        <span class="tag architecture" data-pt="Arquitetura">Architecture</span>
         <span>· April 14, 2026 ·</span>
         <span>18 min read</span>
       </div>
-      <h1 class="post-title">Designing process platforms for long-running business workflows</h1>
-      <p class="post-lede">Notes from a year rebuilding a proposal-to-contract platform: why state machines outlived microservices, how idempotency keys became the real architecture, and the tradeoffs nobody writes about.</p>
+      <h1 class="post-title" data-pt="Projetando plataformas de processo para fluxos de longa duração">Designing process platforms for long-running business workflows</h1>
+      <p class="post-lede" data-pt="Notas de um ano reconstruindo uma plataforma de proposta-a-contrato: por que máquinas de estado sobreviveram aos microserviços, como chaves de idempotência viraram a verdadeira arquitetura, e os trade-offs que ninguém comenta.">Notes from a year rebuilding a proposal-to-contract platform: why state machines outlived microservices, how idempotency keys became the real architecture, and the tradeoffs nobody writes about.</p>
       <div class="post-author">
         <div class="avatar"></div>
         <div>
           <b>Wander Costa</b><br>
-          <span>Software engineer · Brazil</span>
+          <span data-pt="Engenheiro de software · Brasil">Software engineer · Brazil</span>
         </div>
       </div>
       <div class="post-cover"><div class="placeholder p-architecture">cover · process platform diagram</div></div>
@@ -307,20 +311,20 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
   </section>
 
   <div class="container-narrow post-body">
-    <p>There is a class of software that looks boring from the outside and is genuinely hard on the inside. Mortgage proposals. Underwriting. Insurance claims. The things that take weeks, involve a dozen human approvals, and have to remember exactly where they were when the power went out.</p>
-    <p>I spent most of last year rebuilding one of these. Here's what held up and what didn't.</p>
+    <p data-pt="Existe uma classe de software que parece chata por fora e é genuinamente difícil por dentro. Propostas de financiamento. Análise de crédito. Sinistros de seguro. Coisas que levam semanas, envolvem uma dúzia de aprovações humanas e precisam lembrar exatamente onde pararam quando a energia caiu.">There is a class of software that looks boring from the outside and is genuinely hard on the inside. Mortgage proposals. Underwriting. Insurance claims. The things that take weeks, involve a dozen human approvals, and have to remember exactly where they were when the power went out.</p>
+    <p data-pt="Passei boa parte do ano passado reconstruindo um desses. Aqui está o que se sustentou e o que não.">I spent most of last year rebuilding one of these. Here's what held up and what didn't.</p>
 
-    <h2>State machines, not microservices</h2>
-    <p>The first version was a pile of microservices talking to each other via REST and a queue. It worked, in the way that a Rube Goldberg machine works — technically correct, practically unbearable. Every new requirement meant editing four services and praying.</p>
-    <p>The second version started with the state machine. We drew the proposal lifecycle on a whiteboard — <code>draft → submitted → analysed → approved → contracted → active → closed</code> — and made that the primary artifact. Services became workers that picked up transitions; the state itself lived in one place.</p>
+    <h2 data-pt="Máquinas de estado, não microserviços">State machines, not microservices</h2>
+    <p data-pt="A primeira versão era uma pilha de microserviços conversando entre si via REST e uma fila. Funcionava, do jeito que uma máquina de Rube Goldberg funciona — tecnicamente correta, na prática insuportável. Cada novo requisito significava editar quatro serviços e rezar.">The first version was a pile of microservices talking to each other via REST and a queue. It worked, in the way that a Rube Goldberg machine works — technically correct, practically unbearable. Every new requirement meant editing four services and praying.</p>
+    <p data-pt="A segunda versão começou pela máquina de estado. Desenhamos o ciclo de vida da proposta num quadro branco — <code>draft → submitted → analysed → approved → contracted → active → closed</code> — e tornamos isso o artefato principal. Serviços viraram workers que pegavam transições; o estado em si vivia num único lugar.">The second version started with the state machine. We drew the proposal lifecycle on a whiteboard — <code>draft → submitted → analysed → approved → contracted → active → closed</code> — and made that the primary artifact. Services became workers that picked up transitions; the state itself lived in one place.</p>
 
-    <blockquote>"The architecture isn't the boxes and lines. It's the thing you can point at and say 'this is the source of truth'."</blockquote>
+    <blockquote data-pt="&quot;A arquitetura não são as caixas e linhas. É a coisa para a qual você pode apontar e dizer 'esta é a fonte da verdade'.&quot;">"The architecture isn't the boxes and lines. It's the thing you can point at and say 'this is the source of truth'."</blockquote>
 
-    <h3>Why this matters</h3>
-    <p>Once the state is explicit, everything else becomes easier: reporting, resuming after a crash, explaining the system to new hires, <a href="#">writing contracts with the business side</a>. The moment your business lives in ad-hoc fields scattered across tables, you've lost.</p>
+    <h3 data-pt="Por que isso importa">Why this matters</h3>
+    <p data-pt="Quando o estado é explícito, todo o resto fica mais fácil: relatórios, retomar após uma falha, explicar o sistema para novos contratados, <a href=&quot;#&quot;>escrever contratos com a área de negócio</a>. No momento em que seu negócio vive em campos ad-hoc espalhados por tabelas, você já perdeu.">Once the state is explicit, everything else becomes easier: reporting, resuming after a crash, explaining the system to new hires, <a href="#">writing contracts with the business side</a>. The moment your business lives in ad-hoc fields scattered across tables, you've lost.</p>
 
-    <h2>Idempotency keys are the real architecture</h2>
-    <p>If I had to pick one thing that saved us more than any pattern or framework, it would be idempotency keys. Every single write — <em>every one</em> — carries a key derived from <code>(actor, intent, target, version)</code>. The platform is allowed to retry anything it wants, and nothing happens twice.</p>
+    <h2 data-pt="Chaves de idempotência são a verdadeira arquitetura">Idempotency keys are the real architecture</h2>
+    <p data-pt="Se eu tivesse que escolher uma coisa que nos salvou mais que qualquer padrão ou framework, seriam as chaves de idempotência. Toda escrita — <em>toda uma</em> — carrega uma chave derivada de <code>(actor, intent, target, version)</code>. A plataforma pode tentar de novo o que quiser, e nada acontece duas vezes.">If I had to pick one thing that saved us more than any pattern or framework, it would be idempotency keys. Every single write — <em>every one</em> — carries a key derived from <code>(actor, intent, target, version)</code>. The platform is allowed to retry anything it wants, and nothing happens twice.</p>
 
     <pre><code>def submit_proposal(proposal_id, actor):
     key = idempotency_key("submit", actor, proposal_id, version=1)
@@ -330,27 +334,27 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
         repo.save(proposal)
         events.emit(ProposalSubmitted(proposal_id))</code></pre>
 
-    <p>This sounds boring. It is boring. It's also the difference between a platform you can operate and one you can't.</p>
+    <p data-pt="Isso parece chato. É chato mesmo. Também é a diferença entre uma plataforma que você consegue operar e uma que não.">This sounds boring. It is boring. It's also the difference between a platform you can operate and one you can't.</p>
 
-    <h2>The tradeoffs nobody writes about</h2>
+    <h2 data-pt="Os trade-offs que ninguém comenta">The tradeoffs nobody writes about</h2>
     <ul>
-      <li><b>Debuggability over elegance.</b> We chose verbose, explicit code over clever patterns every time someone would be on-call at 2am reading it.</li>
-      <li><b>Slow by default.</b> Long-running workflows don't need to be fast. They need to be <em>correct</em> and <em>resumable</em>. Optimising for latency before either of those is how you ship bugs.</li>
-      <li><b>Human in the loop.</b> Every workflow assumed a human could intervene. Not as a bolt-on — designed in from the start.</li>
+      <li data-pt="<b>Depurabilidade acima de elegância.</b> Escolhemos código verboso e explícito em vez de padrões espertos toda vez que alguém estaria de plantão às 2h lendo aquilo."><b>Debuggability over elegance.</b> We chose verbose, explicit code over clever patterns every time someone would be on-call at 2am reading it.</li>
+      <li data-pt="<b>Lento por padrão.</b> Fluxos de longa duração não precisam ser rápidos. Precisam ser <em>corretos</em> e <em>retomáveis</em>. Otimizar latência antes disso é como você entrega bugs."><b>Slow by default.</b> Long-running workflows don't need to be fast. They need to be <em>correct</em> and <em>resumable</em>. Optimising for latency before either of those is how you ship bugs.</li>
+      <li data-pt="<b>Humano no circuito.</b> Todo fluxo assumia que um humano poderia intervir. Não como remendo — projetado assim desde o início."><b>Human in the loop.</b> Every workflow assumed a human could intervene. Not as a bolt-on — designed in from the start.</li>
     </ul>
 
-    <p>If you're building something in this space and want to compare notes, I'm reachable <a href="#about" data-nav>here</a>.</p>
+    <p data-pt="Se você está construindo algo nesse espaço e quer trocar ideias, me encontra <a href=&quot;#about&quot; data-nav>aqui</a>.">If you're building something in this space and want to compare notes, I'm reachable <a href="#about" data-nav>here</a>.</p>
   </div>
 
   <div class="container-narrow">
     <div class="post-footer">
       <div class="post-tags-row">
-        <span class="tag architecture">Architecture</span>
-        <span class="tag engineering">Engineering</span>
-        <span class="tag updates">Process</span>
+        <span class="tag architecture" data-pt="Arquitetura">Architecture</span>
+        <span class="tag engineering" data-pt="Engenharia">Engineering</span>
+        <span class="tag updates" data-pt="Processo">Process</span>
       </div>
       <div class="post-share">
-        <span>Share</span>
+        <span data-pt="Compartilhar">Share</span>
         <button class="share-btn" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2h3.308l-7.227 8.26L23 22h-6.93l-5.43-7.063L4.324 22H1.016l7.73-8.835L1 2h7.008l4.98 6.567L18.244 2zm-1.17 17.52h1.833L7.01 3.76H5.09l11.984 15.76z"/></svg></button>
         <button class="share-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM8.27 18.5H5.5v-9h2.77v9zm-1.38-10.2a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2zM18.5 18.5h-2.77v-4.37c0-1.04-.02-2.38-1.45-2.38-1.45 0-1.67 1.13-1.67 2.3v4.45H9.84v-9h2.65v1.23h.04c.37-.7 1.27-1.43 2.62-1.43 2.8 0 3.32 1.84 3.32 4.24v4.96z"/></svg></button>
         <button class="share-btn" aria-label="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
@@ -360,22 +364,22 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
 
   <section class="container" style="margin-top:72px">
     <div class="sec-head">
-      <h3 class="sec-title"><span class="dot" style="color:var(--accent)"></span>Read next</h3>
+      <h3 class="sec-title" data-pt="<span class=&quot;dot&quot; style=&quot;color:var(--accent)&quot;></span>Leia a seguir"><span class="dot" style="color:var(--accent)"></span>Read next</h3>
     </div>
     <div class="card-grid">
       <article class="card" onclick="goto('#post')">
         <div class="card-media"><div class="placeholder p-architecture">events</div></div>
         <div class="card-body">
-          <span class="tag architecture">Architecture</span>
-          <h4 class="card-title">Event-driven, eventually confusing</h4>
+          <span class="tag architecture" data-pt="Arquitetura">Architecture</span>
+          <h4 class="card-title" data-pt="Orientado a eventos, eventualmente confuso">Event-driven, eventually confusing</h4>
           <div class="card-meta">Mar 22 · 13 min read</div>
         </div>
       </article>
       <article class="card" onclick="goto('#post')">
         <div class="card-media"><div class="placeholder p-engineering">abstr</div></div>
         <div class="card-body">
-          <span class="tag engineering">Engineering</span>
-          <h4 class="card-title">The shape of a good abstraction</h4>
+          <span class="tag engineering" data-pt="Engenharia">Engineering</span>
+          <h4 class="card-title" data-pt="A forma de uma boa abstração">The shape of a good abstraction</h4>
           <div class="card-meta">Apr 08 · 9 min read</div>
         </div>
       </article>
@@ -383,7 +387,7 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
         <div class="card-media"><div class="placeholder p-devops">tf</div></div>
         <div class="card-body">
           <span class="tag devops">DevOps</span>
-          <h4 class="card-title">Terraform modules that scale</h4>
+          <h4 class="card-title" data-pt="Módulos Terraform que escalam">Terraform modules that scale</h4>
           <div class="card-meta">Mar 15 · 11 min read</div>
         </div>
       </article>
@@ -395,18 +399,18 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
 <main id="page-archive" class="page" hidden>
   <section class="archive-hero">
     <div class="container">
-      <div class="hero-kicker">— Archive —</div>
-      <h1 class="hero-title">Everything, <em>sorted</em></h1>
-      <p class="hero-sub">All notes since 2018. Filter by topic, or just scroll.</p>
+      <div class="hero-kicker" data-pt="— Arquivo —">— Archive —</div>
+      <h1 class="hero-title" data-pt="Tudo, <em>organizado</em>">Everything, <em>sorted</em></h1>
+      <p class="hero-sub" data-pt="Todas as notas desde 2018. Filtre por tópico ou apenas role.">All notes since 2018. Filter by topic, or just scroll.</p>
       <div class="tag-cloud">
-        <a class="tag-pill active">All <span class="count">92</span></a>
-        <a class="tag-pill">Engineering <span class="count">24</span></a>
-        <a class="tag-pill">Architecture <span class="count">18</span></a>
-        <a class="tag-pill">DevOps <span class="count">15</span></a>
-        <a class="tag-pill">Data Platform <span class="count">12</span></a>
-        <a class="tag-pill">AI &amp; ML <span class="count">9</span></a>
-        <a class="tag-pill">Process <span class="count">8</span></a>
-        <a class="tag-pill">Updates <span class="count">6</span></a>
+        <a class="tag-pill active" data-pt="Todos <span class=&quot;count&quot;>92</span>">All <span class="count">92</span></a>
+        <a class="tag-pill" data-pt="Engenharia <span class=&quot;count&quot;>24</span>">Engineering <span class="count">24</span></a>
+        <a class="tag-pill" data-pt="Arquitetura <span class=&quot;count&quot;>18</span>">Architecture <span class="count">18</span></a>
+        <a class="tag-pill" data-pt="DevOps <span class=&quot;count&quot;>15</span>">DevOps <span class="count">15</span></a>
+        <a class="tag-pill" data-pt="Plataforma de Dados <span class=&quot;count&quot;>12</span>">Data Platform <span class="count">12</span></a>
+        <a class="tag-pill" data-pt="IA &amp; ML <span class=&quot;count&quot;>9</span>">AI &amp; ML <span class="count">9</span></a>
+        <a class="tag-pill" data-pt="Processo <span class=&quot;count&quot;>8</span>">Process <span class="count">8</span></a>
+        <a class="tag-pill" data-pt="Novidades <span class=&quot;count&quot;>6</span>">Updates <span class="count">6</span></a>
       </div>
     </div>
   </section>
@@ -416,71 +420,71 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
       <a class="archive-row" onclick="goto('#post')">
         <div class="idx">#092</div>
         <div class="thumb-sm"><div class="placeholder p-architecture">·</div></div>
-        <div class="title">Designing process platforms for long-running business workflows</div>
-        <div><span class="tag architecture">Architecture</span></div>
+        <div class="title" data-pt="Projetando plataformas de processo para fluxos de longa duração">Designing process platforms for long-running business workflows</div>
+        <div><span class="tag architecture" data-pt="Arquitetura">Architecture</span></div>
         <div class="date">April 14, 2026</div>
         <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
       <a class="archive-row" onclick="goto('#post')">
         <div class="idx">#091</div>
         <div class="thumb-sm"><div class="placeholder p-engineering">·</div></div>
-        <div class="title">The shape of a good abstraction, and when to break it</div>
-        <div><span class="tag engineering">Engineering</span></div>
+        <div class="title" data-pt="A forma de uma boa abstração — e quando quebrá-la">The shape of a good abstraction, and when to break it</div>
+        <div><span class="tag engineering" data-pt="Engenharia">Engineering</span></div>
         <div class="date">April 08, 2026</div>
         <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
       <a class="archive-row" onclick="goto('#post')">
         <div class="idx">#090</div>
         <div class="thumb-sm"><div class="placeholder p-data">·</div></div>
-        <div class="title">Your data platform is a graph problem in disguise</div>
-        <div><span class="tag data">Data Platform</span></div>
+        <div class="title" data-pt="Sua plataforma de dados é um problema de grafos disfarçado">Your data platform is a graph problem in disguise</div>
+        <div><span class="tag data" data-pt="Plataforma de Dados">Data Platform</span></div>
         <div class="date">April 05, 2026</div>
         <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
       <a class="archive-row" onclick="goto('#post')">
         <div class="idx">#089</div>
         <div class="thumb-sm"><div class="placeholder p-engineering">·</div></div>
-        <div class="title">Ports and adapters: revisiting hexagonal architecture in 2026</div>
-        <div><span class="tag engineering">Engineering</span></div>
+        <div class="title" data-pt="Ports and adapters: revisitando a arquitetura hexagonal em 2026">Ports and adapters: revisiting hexagonal architecture in 2026</div>
+        <div><span class="tag engineering" data-pt="Engenharia">Engineering</span></div>
         <div class="date">April 02, 2026</div>
         <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
       <a class="archive-row" onclick="goto('#post')">
         <div class="idx">#088</div>
         <div class="thumb-sm"><div class="placeholder p-ml">·</div></div>
-        <div class="title">Retrieval is a product decision, not a tech one</div>
-        <div><span class="tag ml">AI &amp; ML</span></div>
+        <div class="title" data-pt="Retrieval é uma decisão de produto, não de tecnologia">Retrieval is a product decision, not a tech one</div>
+        <div><span class="tag ml" data-pt="IA &amp; ML">AI &amp; ML</span></div>
         <div class="date">March 29, 2026</div>
         <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
       <a class="archive-row" onclick="goto('#post')">
         <div class="idx">#087</div>
         <div class="thumb-sm"><div class="placeholder p-ml">·</div></div>
-        <div class="title">Classifier resolvers: building agents that know when to stop</div>
-        <div><span class="tag ml">AI &amp; ML</span></div>
+        <div class="title" data-pt="Resolvers classificadores: construindo agentes que sabem a hora de parar">Classifier resolvers: building agents that know when to stop</div>
+        <div><span class="tag ml" data-pt="IA &amp; ML">AI &amp; ML</span></div>
         <div class="date">March 28, 2026</div>
         <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
       <a class="archive-row" onclick="goto('#post')">
         <div class="idx">#086</div>
         <div class="thumb-sm"><div class="placeholder p-architecture">·</div></div>
-        <div class="title">Event-driven, eventually confusing</div>
-        <div><span class="tag architecture">Architecture</span></div>
+        <div class="title" data-pt="Orientado a eventos, eventualmente confuso">Event-driven, eventually confusing</div>
+        <div><span class="tag architecture" data-pt="Arquitetura">Architecture</span></div>
         <div class="date">March 22, 2026</div>
         <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
       <a class="archive-row" onclick="goto('#post')">
         <div class="idx">#085</div>
         <div class="thumb-sm"><div class="placeholder p-data">·</div></div>
-        <div class="title">When to use CDC, when to just poll</div>
-        <div><span class="tag data">Data Platform</span></div>
+        <div class="title" data-pt="Quando usar CDC, quando apenas fazer polling">When to use CDC, when to just poll</div>
+        <div><span class="tag data" data-pt="Plataforma de Dados">Data Platform</span></div>
         <div class="date">March 18, 2026</div>
         <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
       <a class="archive-row" onclick="goto('#post')">
         <div class="idx">#084</div>
         <div class="thumb-sm"><div class="placeholder p-devops">·</div></div>
-        <div class="title">Terraform modules that scale without becoming a religion</div>
+        <div class="title" data-pt="Módulos Terraform que escalam sem virar religião">Terraform modules that scale without becoming a religion</div>
         <div><span class="tag devops">DevOps</span></div>
         <div class="date">March 15, 2026</div>
         <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
@@ -488,15 +492,15 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
       <a class="archive-row" onclick="goto('#post')">
         <div class="idx">#083</div>
         <div class="thumb-sm"><div class="placeholder p-engineering">·</div></div>
-        <div class="title">Testing the seams, not the code</div>
-        <div><span class="tag engineering">Engineering</span></div>
+        <div class="title" data-pt="Testando as costuras, não o código">Testing the seams, not the code</div>
+        <div><span class="tag engineering" data-pt="Engenharia">Engineering</span></div>
         <div class="date">March 10, 2026</div>
         <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
       <a class="archive-row" onclick="goto('#post')">
         <div class="idx">#082</div>
         <div class="thumb-sm"><div class="placeholder p-devops">·</div></div>
-        <div class="title">Secret rotation without the 3am page</div>
+        <div class="title" data-pt="Rotação de segredos sem o plantão das 3h">Secret rotation without the 3am page</div>
         <div><span class="tag devops">DevOps</span></div>
         <div class="date">March 04, 2026</div>
         <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
@@ -504,8 +508,8 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
       <a class="archive-row" onclick="goto('#post')">
         <div class="idx">#081</div>
         <div class="thumb-sm"><div class="placeholder p-data">·</div></div>
-        <div class="title">Change data capture, debezium, and the illusion of real-time</div>
-        <div><span class="tag data">Data Platform</span></div>
+        <div class="title" data-pt="Change data capture, Debezium e a ilusão do tempo real">Change data capture, debezium, and the illusion of real-time</div>
+        <div><span class="tag data" data-pt="Plataforma de Dados">Data Platform</span></div>
         <div class="date">February 29, 2026</div>
         <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
@@ -518,38 +522,38 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
   <section class="about-hero">
     <div class="container">
       <div class="about-avatar">W</div>
-      <div class="hero-kicker">— About —</div>
-      <h1 class="hero-title">Hi, I'm <em>Wander</em></h1>
-      <p class="hero-sub">Software engineer based in Brazil. I write about systems that outlive their first whiteboard sketch.</p>
+      <div class="hero-kicker" data-pt="— Sobre —">— About —</div>
+      <h1 class="hero-title" data-pt="Olá, sou o <em>Wander</em>">Hi, I'm <em>Wander</em></h1>
+      <p class="hero-sub" data-pt="Engenheiro de software no Brasil. Escrevo sobre sistemas que sobrevivem ao primeiro rascunho no quadro branco.">Software engineer based in Brazil. I write about systems that outlive their first whiteboard sketch.</p>
     </div>
   </section>
 
   <section class="container-narrow">
     <div class="about-body">
-      <p>I've been building software for about fifteen years. Most of it in the boring, load-bearing parts of industries that can't afford to be boring — mortgage, banking, healthcare, logistics. The kind of systems where a rounding error is a legal problem and "we'll fix it in the next sprint" isn't a plan.</p>
-      <p>My day job is platform engineering and architecture. I care a lot about the seams between teams, the interfaces between services, and the quiet decisions that determine whether a codebase stays pleasant to work in after year three.</p>
-      <p>This site is where I write about that. It's also where I keep notes on things I'm learning — Go, Kotlin, agentic systems, data platforms, the occasional detour into K8s internals. I don't publish on a schedule. I publish when I have something that's been rattling around long enough to be worth the effort of writing it down.</p>
+      <p data-pt="Construo software há cerca de quinze anos. A maior parte nas partes chatas e estruturais de setores que não podem se dar ao luxo de serem chatos — crédito imobiliário, bancos, saúde, logística. O tipo de sistema onde um erro de arredondamento é um problema jurídico e &quot;a gente arruma no próximo sprint&quot; não é um plano.">I've been building software for about fifteen years. Most of it in the boring, load-bearing parts of industries that can't afford to be boring — mortgage, banking, healthcare, logistics. The kind of systems where a rounding error is a legal problem and "we'll fix it in the next sprint" isn't a plan.</p>
+      <p data-pt="Meu trabalho do dia a dia é engenharia de plataforma e arquitetura. Me importo muito com as costuras entre times, as interfaces entre serviços e as decisões silenciosas que determinam se um codebase continua agradável de trabalhar depois do terceiro ano.">My day job is platform engineering and architecture. I care a lot about the seams between teams, the interfaces between services, and the quiet decisions that determine whether a codebase stays pleasant to work in after year three.</p>
+      <p data-pt="Este site é onde escrevo sobre isso. Também é onde guardo notas sobre coisas que estou aprendendo — Go, Kotlin, sistemas agênticos, plataformas de dados, um desvio ocasional pelas entranhas do K8s. Não publico em uma agenda fixa. Publico quando tenho algo que ficou rondando tempo o bastante para valer o esforço de escrever.">This site is where I write about that. It's also where I keep notes on things I'm learning — Go, Kotlin, agentic systems, data platforms, the occasional detour into K8s internals. I don't publish on a schedule. I publish when I have something that's been rattling around long enough to be worth the effort of writing it down.</p>
     </div>
 
     <div class="about-stats">
-      <div class="about-stat"><div class="n">92</div><div class="l">Notes</div></div>
-      <div class="about-stat"><div class="n">15<em>y</em></div><div class="l">Writing code</div></div>
-      <div class="about-stat"><div class="n">75<em>+</em></div><div class="l">OSS repos</div></div>
-      <div class="about-stat"><div class="n">BR</div><div class="l">Based in</div></div>
+      <div class="about-stat"><div class="n">92</div><div class="l" data-pt="Notas">Notes</div></div>
+      <div class="about-stat"><div class="n">15<em>y</em></div><div class="l" data-pt="Escrevendo código">Writing code</div></div>
+      <div class="about-stat"><div class="n">75<em>+</em></div><div class="l" data-pt="Repos OSS">OSS repos</div></div>
+      <div class="about-stat"><div class="n">BR</div><div class="l" data-pt="País">Based in</div></div>
     </div>
 
     <div class="about-now">
-      <h3>◈ Currently</h3>
+      <h3 data-pt="◈ Atualmente">◈ Currently</h3>
       <ul>
-        <li>Building a sandbox platform for long-running mortgage workflows</li>
-        <li>Exploring agent-based classifier/resolver patterns</li>
-        <li>Writing the third draft of an essay I keep deleting</li>
-        <li>Reading <i>Data-Intensive Applications</i> for the fourth time</li>
+        <li data-pt="Construindo uma plataforma sandbox para fluxos de crédito imobiliário de longa duração">Building a sandbox platform for long-running mortgage workflows</li>
+        <li data-pt="Explorando padrões de classificador/resolver baseados em agentes">Exploring agent-based classifier/resolver patterns</li>
+        <li data-pt="Escrevendo o terceiro rascunho de um ensaio que vivo apagando">Writing the third draft of an essay I keep deleting</li>
+        <li data-pt="Lendo <i>Data-Intensive Applications</i> pela quarta vez">Reading <i>Data-Intensive Applications</i> for the fourth time</li>
       </ul>
     </div>
 
     <div class="about-body">
-      <p>If any of this resonates, or you're working on a similar problem and want to compare notes, my inbox is open. You'll find me on <a href="https://github.com/wfercosta" target="_blank">GitHub</a>, <a href="https://linkedin.com/in/wfercosta" target="_blank">LinkedIn</a>, and occasionally on <a href="https://dev.to/wfercosta" target="_blank">dev.to</a>. I reply to every thoughtful email — eventually.</p>
+      <p data-pt="Se algo disso ressoa, ou você está trabalhando num problema parecido e quer trocar ideias, minha caixa de entrada está aberta. Você me encontra no <a href=&quot;https://github.com/wfercosta&quot; target=&quot;_blank&quot;>GitHub</a>, no <a href=&quot;https://linkedin.com/in/wfercosta&quot; target=&quot;_blank&quot;>LinkedIn</a> e, de vez em quando, no <a href=&quot;https://dev.to/wfercosta&quot; target=&quot;_blank&quot;>dev.to</a>. Respondo todo e-mail bem pensado — eventualmente.">If any of this resonates, or you're working on a similar problem and want to compare notes, my inbox is open. You'll find me on <a href="https://github.com/wfercosta" target="_blank">GitHub</a>, <a href="https://linkedin.com/in/wfercosta" target="_blank">LinkedIn</a>, and occasionally on <a href="https://dev.to/wfercosta" target="_blank">dev.to</a>. I reply to every thoughtful email — eventually.</p>
     </div>
   </section>
 </main>
@@ -563,28 +567,28 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
           <span class="brand-mark">wf</span>
           <span class="brand-name">wfercosta<em>/notes</em></span>
         </a>
-        <p>Engineering notes on software, architecture, and the quiet craft of shipping systems that last.</p>
+        <p data-pt="Notas de engenharia sobre software, arquitetura e a arte silenciosa de entregar sistemas que duram.">Engineering notes on software, architecture, and the quiet craft of shipping systems that last.</p>
       </div>
       <div>
         <h5>Site</h5>
         <ul>
-          <li><a href="#home" data-nav>Articles</a></li>
-          <li><a href="#archive" data-nav>Archive</a></li>
-          <li><a href="#about" data-nav>About</a></li>
-          <li><a href="#">RSS feed</a></li>
+          <li><a href="#home" data-nav data-pt="Artigos">Articles</a></li>
+          <li><a href="#archive" data-nav data-pt="Arquivo">Archive</a></li>
+          <li><a href="#about" data-nav data-pt="Sobre">About</a></li>
+          <li><a href="#" data-pt="Feed RSS">RSS feed</a></li>
         </ul>
       </div>
       <div>
-        <h5>Topics</h5>
+        <h5 data-pt="Tópicos">Topics</h5>
         <ul>
-          <li><a href="#archive" data-nav>Engineering</a></li>
-          <li><a href="#archive" data-nav>Architecture</a></li>
-          <li><a href="#archive" data-nav>Data Platform</a></li>
-          <li><a href="#archive" data-nav>AI &amp; ML</a></li>
+          <li><a href="#archive" data-nav data-pt="Engenharia">Engineering</a></li>
+          <li><a href="#archive" data-nav data-pt="Arquitetura">Architecture</a></li>
+          <li><a href="#archive" data-nav data-pt="Plataforma de Dados">Data Platform</a></li>
+          <li><a href="#archive" data-nav data-pt="IA &amp; ML">AI &amp; ML</a></li>
         </ul>
       </div>
       <div>
-        <h5>Elsewhere</h5>
+        <h5 data-pt="Em outros lugares">Elsewhere</h5>
         <ul>
           <li><a href="https://github.com/wfercosta" target="_blank">GitHub ↗</a></li>
           <li><a href="https://linkedin.com/in/wfercosta" target="_blank">LinkedIn ↗</a></li>
@@ -594,7 +598,7 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
       </div>
     </div>
     <div class="footer-legal">
-      <span>© 2026 wfercosta.com · Built with Jekyll &amp; obsession</span>
+      <span data-pt="© 2026 wfercosta.com · Feito com Jekyll &amp; obsessão">© 2026 wfercosta.com · Built with Jekyll &amp; obsession</span>
       <span>v2026.04</span>
     </div>
   </div>
@@ -645,6 +649,32 @@ setTheme(localStorage.getItem('theme') || TWEAK_DEFAULS.theme || 'dark');
 themeBtn.addEventListener('click', () => {
   setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
 });
+
+// ===== Language toggle (EN / PT-BR) =====
+const MONTHS = {January:'janeiro',February:'fevereiro',March:'março',April:'abril',May:'maio',June:'junho',July:'julho',August:'agosto',September:'setembro',October:'outubro',November:'novembro',December:'dezembro'};
+const MONTHS_ABBR = {Jan:'jan',Feb:'fev',Mar:'mar',Apr:'abr',May:'mai',Jun:'jun',Jul:'jul',Aug:'ago',Sep:'set',Oct:'out',Nov:'nov',Dec:'dez'};
+const META_SEL = '.featured-meta, .card-meta, .article-row .meta, .timeline-body .meta, .archive-row .date, .post-meta-top span:not(.tag)';
+function toPt(s) {
+  s = s.replace(/\b(January|February|March|April|May|June|July|August|September|October|November|December) (\d{1,2}), (\d{4})\b/g, (m, mo, d, y) => `${parseInt(d,10)} de ${MONTHS[mo]} de ${y}`);
+  s = s.replace(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2})\b/g, (m, mo, d) => `${d} ${MONTHS_ABBR[mo]}`);
+  s = s.replace(/min read/g, 'min de leitura');
+  return s;
+}
+function setLang(lang) {
+  html.setAttribute('lang', lang === 'pt' ? 'pt-BR' : 'en');
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('[data-pt]').forEach(el => {
+    if (el.dataset.en == null) el.dataset.en = el.innerHTML;
+    el.innerHTML = lang === 'pt' ? el.getAttribute('data-pt') : el.dataset.en;
+  });
+  document.querySelectorAll(META_SEL).forEach(el => {
+    if (el.dataset.en == null) el.dataset.en = el.innerHTML;
+    el.innerHTML = lang === 'pt' ? toPt(el.dataset.en) : el.dataset.en;
+  });
+  document.querySelectorAll('.lang-opt').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+}
+document.querySelectorAll('.lang-opt').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+setLang(localStorage.getItem('lang') || 'en');
 
 // ===== Categories scroll =====
 const cats = document.getElementById('categories');

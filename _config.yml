@@ -3,6 +3,7 @@ name: "wfercosta.com"
 description: "A blog about Software Engineering, Software Architecture and Data. Content ranges from tools, programming languages, frameworks to methodologies."
 favicon: "assets/images/favicon.ico"
 baseurl: ""
+url: "https://wfercosta.com"
 production_url: https://wfercosta.com/
 
 # Author
@@ -27,6 +28,13 @@ plugins_dir:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-polyglot
+
+# i18n (jekyll-polyglot) — requires building via GitHub Actions (not GH Pages native)
+languages: ["en", "br"]
+default_lang: "en"
+exclude_from_localization: ["assets", "css", "js", "images", "fonts", "feed.xml", "sitemap.xml", "robots.txt", "CNAME"]
+parallel_localization: true
 
 # Pagination
 paginate: 5
