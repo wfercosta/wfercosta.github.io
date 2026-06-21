@@ -109,6 +109,33 @@ img { max-width: 100%; display: block; }
 
 .nav-actions { display: flex; gap: 10px; align-items: center; }
 
+.lang-toggle {
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2px;
+  gap: 2px;
+}
+.lang-opt {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--fg-mute);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.lang-opt:hover { color: var(--fg-dim); }
+.lang-opt.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
 .theme-toggle {
   width: 36px; height: 36px; border-radius: 10px;
   background: var(--bg-card); border: 1px solid var(--border);
