@@ -50,6 +50,7 @@ title: Home
     {% assign hero_post = lang_posts | first %}
   {% endif %}
 
+  {% if hero_post %}
   <div class="split-grid">
     <div>
       {% include featured-card.html post=hero_post idx=1 %}
@@ -61,6 +62,7 @@ title: Home
       {% endfor %}
     </div>
   </div>
+  {% endif %}
 
   <!-- Engineering & Architecture section -->
   {% assign eng_posts = lang_posts | where_exp: "p", "p.tags contains 'engineering' or p.tags contains 'architecture'" %}

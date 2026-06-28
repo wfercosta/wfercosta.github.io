@@ -43,9 +43,49 @@ A tarefa é **recriar esses designs no stack existente do repositório (Jekyll /
 - **Post hero centralizado** com mesmo glow roxo, padding 80px 0 40px
   - Linha meta mono: tag + data + read time
   - Título serif `clamp(40px, 5.5vw, 64px)`, max-width 820px
+  - **Subtítulo (opcional)** serif *itálico* `clamp(22px, 3vw, 30px)`, `var(--fg-dim)`, max-width 720px — sentado entre título e lede. Só renderiza quando o post tem `subtitle` no front matter. Quando ausente, o título volta à margem padrão automaticamente (via `.post-title:has(+ .post-subtitle)`). É uma "segunda voz" do título, visualmente distinta do lede (serif italic vs sans).
   - Lede 18px var(--fg-dim), max-width 640px
   - Author row (avatar gradient + nome + descrição mono)
   - Post cover 16:9, max-width 1100px, radius 20px, border 1px
+
+**Front matter do post (campos title/subtitle/lede):**
+```yaml
+---
+layout: post
+title: "Designing process platforms for long-running business workflows"
+subtitle: "Why state machines beat microservices"   # OPCIONAL — omitir quando não houver
+lede: "Notes from a year rebuilding a proposal-to-contract platform..."  # opcional
+lang: en
+ref: process-platforms
+tags: [architecture]
+---
+```
+
+**Template (`_layouts/post.html`) — renderização condicional:**
+```liquid
+<h1 class="post-title">{{ page.title }}</h1>
+{% if page.subtitle %}
+  <p class="post-subtitle">{{ page.subtitle }}</p>
+{% endif %}
+{% if page.lede %}
+  <p class="post-lede">{{ page.lede }}</p>
+{% endif %}
+```
+
+**CSS (já em `styles.css`):**
+```css
+.post-title:has(+ .post-subtitle) { margin-bottom: 12px; }
+.post-subtitle {
+  font-family: var(--font-serif);
+  font-style: italic; font-weight: 400;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.2; letter-spacing: -0.01em;
+  color: var(--fg-dim);
+  max-width: 720px; margin: 0 auto 24px;
+}
+.post-subtitle + .post-lede { margin-top: 0; }
+```
+> i18n: para traduzir o subtítulo, use um campo por idioma no post traduzido (`_posts/pt-br/...`) — o `subtitle` vive no front matter de cada versão, não num data file.
 - **Post body** (container-narrow, max 760px):
   - 17px / line-height 1.75
   - h2 serif 34px, h3 sans 20px 600
