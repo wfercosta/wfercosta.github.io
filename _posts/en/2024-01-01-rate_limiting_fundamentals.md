@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Rate Limiting: fundamentals and strategies"
+subtitle: "How to protect your APIs from overload while keeping good clients happy"
 lang: en
 ref: rate-limiting
 tags: [engineering, architecture]

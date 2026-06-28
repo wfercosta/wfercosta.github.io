@@ -16,6 +16,9 @@ layout: default
       <span>{{ page.content | number_of_words | divided_by: 200 | plus: 1 }} {{ t.post.read_time }}</span>
     </div>
     <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.subtitle %}
+    <p class="post-subtitle">{{ page.subtitle }}</p>
+    {% endif %}
     {% if page.excerpt %}
     <p class="post-lede">{{ page.excerpt | strip_html | truncate: 200 }}</p>
     {% endif %}
