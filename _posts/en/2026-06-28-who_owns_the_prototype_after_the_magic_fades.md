@@ -96,7 +96,7 @@ And this is where the maturity curve begins. Unlike the Builder — which I cons
 
 The **second maturity level**, once teams already run the hybrid model well, is the move toward agentic teams. My view is that all the repertoire used to guide the AI starts to be converted into guardrails, harness, and playbooks that the Artificial Intelligence makes full use of. We come to have fewer manual validation points, because all of that scaffolding built to guide the AI becomes reliable and predictable.
 
-![Maturity curve: from Builder to hybrid and agentic teams](/assets/images/posts/2026-06-28/curva-maturidade.svg)
+![Maturity curve: from Builder to hybrid and agentic teams](/assets/images/posts/2026-06-28/maturity-curve.svg)
 
 ## 3. Where the handoff really happens: repertoire
 
